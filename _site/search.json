@@ -186,7 +186,7 @@
     "href": "technical-details/llm-usage-log.html#brainstorming",
     "title": "LLM usage log",
     "section": "Brainstorming",
-    "text": "Brainstorming\n\nTo create the initial idea, LLM tools were used to brainstorm ideas and provide feedback and refine the project plan."
+    "text": "Brainstorming\n\nChat GPT was used to brainstorm project ideas and provide feedback and refine the project plan."
   },
   {
     "objectID": "technical-details/llm-usage-log.html#writing",
@@ -886,7 +886,7 @@
     "href": "technical-details/progress-log.html",
     "title": "Progress log",
     "section": "",
-    "text": "Use this page to track your progress and keep a log of your contributions to the project, please update this each time you work on your project, it is generally a good habit to adopt.\nIf you are working as a team, at the end, you can duplicate the project and add it to your individual portfolio websites. If you do, you MUST retain attribution to your teammates. Removing attribution would constitute plagiarism."
+    "text": "Use this page to track your progress and keep a log of your contributions to the project, please update this each time you work on your project, it is generally a good habit to adopt."
   },
   {
     "objectID": "technical-details/progress-log.html#to-do",
@@ -900,6 +900,6 @@
     "href": "technical-details/progress-log.html#jessica-joy",
     "title": "Progress log",
     "section": "Jessica Joy:",
-    "text": "Jessica Joy:\nProvide their name, a link to their “About Me” page.\nAlso, describe a log of their project roles.\nWeekly project contribution log:\nM: 11-04-2024\n\nbrainstorming topics with GPT"
+    "text": "Jessica Joy:\nProvide their name, a link to their “About Me” page.\nWeekly project contribution log:\nM: 11-04-2024\n\nbrainstorming topics with GPT\n\nT: 11-14-2024\n\nstarted literature review\nstarted collecting data"
   }
 ]

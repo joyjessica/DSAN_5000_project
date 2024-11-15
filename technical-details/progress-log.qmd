@@ -4,7 +4,6 @@ title: "Progress log"
 
 Use this page to track your progress and keep a log of your contributions to the project, please update this each time you work on your project, it is generally a good habit to adopt.
 
-If you are working as a team, at the end, you can duplicate the project and add it to your individual portfolio websites. If you do, you **MUST** retain attribution to your teammates. Removing attribution would constitute plagiarism.
 
 ## To-do
 
@@ -18,7 +17,6 @@ If you are working as a team, at the end, you can duplicate the project and add 
 
 Provide their name, a link to their "About Me" page.
 
-Also, describe a log of their project roles.
 
 **Weekly project contribution log:**
 
@@ -27,3 +25,8 @@ Also, describe a log of their project roles.
 
 * [x] brainstorming topics with GPT 
 
+
+**T: 11-14-2024** 
+
+* [x] started literature review
+* [x] started collecting data
