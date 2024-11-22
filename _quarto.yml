@@ -14,6 +14,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: aboutme.qmd
+        text: About Me
       - href: instructions/overview.qmd
         text: Instructions
 
