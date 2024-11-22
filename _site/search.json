@@ -207,7 +207,21 @@
     "href": "aboutme.html",
     "title": "About Me",
     "section": "",
-    "text": "&lt;!DOCTYPE html&gt;\n\n\n\n501 project\n\n\n\n\n\n\n\n\n\nAbout Me\n\n\n\nLinks\n\n    &lt;!-- open in new tab use:   &lt;a href=\"https://www.google.com/\" target=\"_blank\"&gt;google&lt;/a&gt;--&gt;\n    &lt;!-- open in same tab use:  &lt;a href=\"https://www.google.com/\"&gt;google&lt;/a&gt;--&gt;\n    &lt;a href=\"https://www.linkedin.com/in/jessicajoy1019/\" target=\"_blank\"&gt;LinkedIn&lt;/a&gt;\n    &lt;a href=\"https://github.com/joyjessica\" target=\"_blank\"&gt;GitHub&lt;/a&gt;\n\n    &lt;/div&gt;\n&lt;/li&gt;\n\n\n&lt;/ul&gt;\n\n\n\n\n\n\n\n\n\n\n\nAbout me\n\n\nJessica Joy is a full-time student in the Data Science and Analytics program at Georgetown University. She earned her Bachelor of Science in Financial Economics from Binghamton University in 2020. Before joining the DSAN program, she worked as a senior data analyst at EssenceMediacom, a marketing agency in New York City, where she contributed to various projects, including Marketing Mix Models and ad optimizations. She is excited to further develop her data skills and apply them to other industries, particularly social services.\n\n\n\n\n\n\n\n\nAcademic Interests\n\n\n\nNatural Language Processing\n\n  &lt;p&gt; - Data Visualization &lt;/p&gt; \n  &lt;p&gt; - Generative AI &lt;/p&gt; \n  &lt;p&gt; - Social Services &lt;/p&gt; \n\n\n&lt;/td&gt;\n\n&lt;!--ROW-2 COL-2--&gt;\n&lt;td&gt;\n\n   &lt;h2 style=\"text-align:left; color:rgb(0, 0, 255);\"&gt;Education&lt;/h2&gt;\n\n  &lt;p&gt; 2020: Binghamton University &lt;/p&gt; \n  &lt;p&gt; Expected 2026: Georgetown University &lt;/p&gt; \n  &lt;p&gt;  &lt;/p&gt; \n  &lt;p&gt;  &lt;/p&gt; \n\n&lt;/td&gt;"
+    "text": "Jessica Joy is a full-time student in the Data Science and Analytics program at Georgetown University. She earned her Bachelor of Science in Financial Economics from Binghamton University in 2020. Before joining the DSAN program, she worked as a senior data analyst at EssenceMediacom, a marketing agency in New York City, where she contributed to various projects, including Marketing Mix Models and ad optimizations. She is excited to further develop her data skills and apply them to other industries, particularly social services."
+  },
+  {
+    "objectID": "aboutme.html#education",
+    "href": "aboutme.html#education",
+    "title": "About Me",
+    "section": "Education",
+    "text": "Education\n\n2020: Binghamton University\nExpected 2026: Georgetown University"
+  },
+  {
+    "objectID": "aboutme.html#academic-interests",
+    "href": "aboutme.html#academic-interests",
+    "title": "About Me",
+    "section": "Academic Interests",
+    "text": "Academic Interests\n\nNatural Language Processing\nData Visualization\nGenerative AI\nSocial Services"
   },
   {
     "objectID": "technical-details/supervised-learning/instructions.html",
