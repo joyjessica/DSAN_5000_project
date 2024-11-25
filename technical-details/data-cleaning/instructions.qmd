@@ -74,3 +74,60 @@ Possible things to include:
 - **Rationale**: Justify why you chose to work with a particular subset of the data.
 
 
+# Start
+
+**Data Cleaning**:
+
+The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.
+
+I relied on a NYC Public School's School Quality Reports Educator Guide: High Schools 2022–23 [@NYCPublicSchoolsInfoHub_2024] as a data dictionary to understand what a lot of the columns were expressing and clean accordingly.
+
+**Managing Missing Data**:
+According to the Educator Guide, metrics with fewer than the minimum number of students are not reported and do not
+contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers [@NYCPublicSchoolsInfoHub_2024]. These are shown in the data as values of 'N<15' and 'N<5'. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing. 
+
+In addition, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much.
+
+- **Identify Missing Values**: Explain how you identified missing data and where it occurred.
+- **Handling Missing Data**: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).
+
+
+**Outlier Detection and Treatment**:
+
+- **Identify Outliers**: Describe the methods you used to detect outliers in the dataset.
+- **Addressing Outliers**: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).
+- **Visualize Outliers**: Use visualizations (e.g., box plots) to show how outliers were managed.
+
+
+**Data Type Correction and Formatting**:
+
+Before processing, the data types summary shows:
+| float64 | 346 |
+| object | 317 |
+
+After processing and removing rows, the summary shows:
+| float64 | 224 |
+| object | 4 |
+
+The remaining object columns are 'DBN', 'School Name', 'District', and 'Borough'. We will keep these for EDA purposes. 
+
+I used sklearn's ordinal encoder to encode the categorical values of quality review columns. The value provided were : 'Developing' 'Well Developed', 'Proficient'. I encoded them in this order and handled unkown values as -1.
+
+Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.
+
+**Normalization and Scaling**:
+
+- **Data Distribution Analysis**: Check and discuss the distribution of numerical variables (e.g., skewness).
+- **Normalization Techniques**: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).
+- **Before-and-After Visualizations**: Provide visualizations comparing the data before and after scaling or normalization.
+
+**Subsetting the Data**:
+
+- **Data Filtering**: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).
+- **Rationale**: Justify why you chose to work with a particular subset of the data.
+
+I chose to work with this particular subset of the data becasue it retains the the information of the columns I am interested in exploring. I chose to drop columns that were too granular such as specific Regents subjects. In addition, some metric columns contained the same info as the 'Metric Value' columns that I kept, so I was able to get rid of N count, metric rating, metric score, comparison group, and positive response columns.
+
+
+
+

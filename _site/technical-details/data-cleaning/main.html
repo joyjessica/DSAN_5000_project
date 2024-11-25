@@ -20,10 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,6 +121,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -161,6 +218,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#general-comments" id="toc-general-comments" class="nav-link" data-scroll-target="#general-comments">General comments:</a></li>
   <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
   </ul></li>
+  <li><a href="#start" id="toc-start" class="nav-link" data-scroll-target="#start">Start</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
@@ -260,17 +318,530 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
+<section id="start" class="level1">
+<h1>Start</h1>
+<p><strong>Data Cleaning</strong>:</p>
+<p>The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.</p>
+<p>I relied on a NYC Public School’s School Quality Reports Educator Guide: High Schools 2022–23<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span> as a data dictionary to understand what a lot of the columns were expressing and clean accordingly.</p>
+<p><strong>Managing Missing Data</strong>: According to the Educator Guide, metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing.</p>
+<p>In addition, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much.</p>
+<ul>
+<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
+<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
+</ul>
+<p><strong>Outlier Detection and Treatment</strong>:</p>
+<ul>
+<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
+<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
+<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
+</ul>
+<p><strong>Data Type Correction and Formatting</strong>:</p>
+<p>Before processing, the data types summary shows: | float64 | 346 | | object | 317 |</p>
+<p>After processing and removing rows, the summary shows: | float64 | 224 | | object | 4 |</p>
+<p>The remaining object columns are ‘DBN’, ‘School Name’, ‘District’, and ‘Borough’. We will keep these for EDA purposes.</p>
+<p>I used sklearn’s ordinal encoder to encode the categorical values of quality review columns. The value provided were : ‘Developing’ ‘Well Developed’, ‘Proficient’. I encoded them in this order and handled unkown values as -1.</p>
+<p>Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.</p>
+<p><strong>Normalization and Scaling</strong>:</p>
+<ul>
+<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
+<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
+<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
+</ul>
+<p><strong>Subsetting the Data</strong>:</p>
+<ul>
+<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
+<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
+</ul>
+<p>I chose to work with this particular subset of the data becasue it retains the the information of the columns I am interested in exploring. I chose to drop columns that were too granular such as specific Regents subjects. In addition, some metric columns contained the same info as the ‘Metric Value’ columns that I kept, so I was able to get rid of N count, metric rating, metric score, comparison group, and positive response columns.</p>
+</section>
 <section id="code" class="level1">
 <h1>Code</h1>
 <p>Provide the source code used for this section of the project here.</p>
 <p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
 <p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
 <p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<div id="cell-3" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OrdinalEncoder</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sodapy <span class="im">import</span> Socrata</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'future.no_silent_downcasting'</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in excel data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>all_sheets <span class="op">=</span> pd.read_excel(<span class="st">'../../data/raw-data/202223-hs-sqr-results.xlsx'</span>, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">506</span>, sheet_name<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concat 4 dicts of sheets</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat(all_sheets.values(), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pre cleaning df.head check</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Unnamed: 1</th>
+<th data-quarto-table-cell-role="th">Unnamed: 2</th>
+<th data-quarto-table-cell-role="th">DBN</th>
+<th data-quarto-table-cell-role="th">School Name</th>
+<th data-quarto-table-cell-role="th">School Type</th>
+<th data-quarto-table-cell-role="th">Enrollment</th>
+<th data-quarto-table-cell-role="th">Rigorous Instruction Rating</th>
+<th data-quarto-table-cell-role="th">Collaborative Teachers Rating</th>
+<th data-quarto-table-cell-role="th">Supportive Environment Rating</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">N Count - % of students who took the US History Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the US History Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">N Count - % of students who took the Algebra I Regents exam in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Algebra I Regents exam in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">N Count - % of students who took the Living Environment Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Living Environment Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">N Count - % of students who took a Languages Other Than English Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took a Languages Other Than English Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">N Count - % of students who took the Physics Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Physics Regents in the current year who scored 65+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01M292</td>
+<td>Orchard Collegiate Academy</td>
+<td>High School</td>
+<td>269.0</td>
+<td>Meeting Target</td>
+<td>Exceeding Target</td>
+<td>Meeting Target</td>
+<td>...</td>
+<td>49.0</td>
+<td>0.612</td>
+<td>51.0</td>
+<td>0.451</td>
+<td>52.0</td>
+<td>0.615</td>
+<td>32.0</td>
+<td>0.969</td>
+<td>1.0</td>
+<td>N&lt;15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01M448</td>
+<td>University Neighborhood High School</td>
+<td>High School</td>
+<td>485.0</td>
+<td>Exceeding Target</td>
+<td>Exceeding Target</td>
+<td>Exceeding Target</td>
+<td>...</td>
+<td>108.0</td>
+<td>0.648</td>
+<td>79.0</td>
+<td>0.772</td>
+<td>82.0</td>
+<td>0.744</td>
+<td>66.0</td>
+<td>0.773</td>
+<td>4.0</td>
+<td>N&lt;15</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01M450</td>
+<td>East Side Community School</td>
+<td>High School</td>
+<td>389.0</td>
+<td>Exceeding Target</td>
+<td>Exceeding Target</td>
+<td>Exceeding Target</td>
+<td>...</td>
+<td>1.0</td>
+<td>N&lt;15</td>
+<td>1.0</td>
+<td>N&lt;15</td>
+<td>1.0</td>
+<td>N&lt;15</td>
+<td>NaN</td>
+<td>N&lt;15</td>
+<td>NaN</td>
+<td>N&lt;15</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01M539</td>
+<td>New Explorations into Science, Technology and ...</td>
+<td>High School</td>
+<td>620.0</td>
+<td>Meeting Target</td>
+<td>Meeting Target</td>
+<td>Exceeding Target</td>
+<td>...</td>
+<td>94.0</td>
+<td>0.894</td>
+<td>45.0</td>
+<td>0.889</td>
+<td>46.0</td>
+<td>0.957</td>
+<td>100.0</td>
+<td>0.87</td>
+<td>121.0</td>
+<td>0.595</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 663 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pre Cleaning data types</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>float64    346
+object     317
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make N&lt;15 NA</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;15'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;5'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#make values '&lt;95%' as max 95%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'&gt; 95%'</span>, <span class="bu">int</span>(<span class="fl">0.95</span>)).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre Cleaning Missingness</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">False</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values Before Cleaning"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Handle Missingess</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#remove columns that are missing &gt; 50%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>missingness <span class="op">=</span> df.isna().mean()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter columns with less than 75% missing values</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, missingness <span class="op">&lt;</span> <span class="fl">0.5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#columns to remove by string</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Unnamed: remove NA columns</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#N count / metric rating / metric score / comparison group: we just need metric value % columns, these give the same info</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#positive responses: remove borough and city positive response columns - we just need element score for these metrics</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>string_check <span class="op">=</span> <span class="st">"Unnamed|N count|metric rating|metric score|comparison group|positive responses"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(string_check, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop duplicated columns</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.T.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#drop principal name, date of review, and School Type (they are all High Schools) columns</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Quality Review - Principal at Time of Review'</span>,<span class="st">'School Type'</span>,<span class="st">'Quality Review - Dates of Review'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#drop these columns with survey response questions, we have score columns for this</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Rigorous Instruction Rating'</span>,<span class="st">'Collaborative Teachers Rating'</span>,<span class="st">'Supportive Environment Rating'</span>,<span class="st">'Effective School Leadership Rating'</span>,<span class="st">'Strong Family-Community Ties Rating'</span>,<span class="st">'Trust Rating'</span>,<span class="st">'Student Achievement Rating'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#remove first row</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.iloc[<span class="dv">1</span>: , :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use ordinal encoder to encode categorical quality review columns</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get columns with 'proficient' categories</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>proficient_cols <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> df.columns <span class="cf">if</span> df[col].astype(<span class="bu">str</span>).<span class="bu">str</span>.contains(<span class="st">'proficient'</span>, case<span class="op">=</span><span class="va">False</span>).<span class="bu">any</span>()]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>proficient_hierarchy <span class="op">=</span> [<span class="st">'Developing'</span>, <span class="st">'Well Developed'</span>, <span class="st">'Proficient'</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> OrdinalEncoder(categories<span class="op">=</span>[proficient_hierarchy] <span class="op">*</span> <span class="bu">len</span>(proficient_cols), handle_unknown<span class="op">=</span><span class="st">'use_encoded_value'</span>, unknown_value<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#run encoder</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df[proficient_cols] <span class="op">=</span> encoder.fit_transform(df[proficient_cols])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#extract District and Borough from DBN column - DBN: (##(District)X(Borough)</span><span class="al">###</span><span class="co">(School ID))</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.copy()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'District'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">2</span>:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#map borough name to value</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>borough_map <span class="op">=</span> {<span class="st">'M'</span>: <span class="st">'Manhattan'</span>, <span class="st">'K'</span>: <span class="st">'Brooklyn'</span>, <span class="st">'X'</span>: <span class="st">'Bronx'</span>, <span class="st">'Q'</span>:<span class="st">'Queens'</span>, <span class="st">'R'</span>:<span class="st">'Staten Island'</span>}</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'Borough'</span>].<span class="bu">map</span>(borough_map) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#handle data types</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># #convert rate % to float</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Student Survey Response Rate'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Student Survey Response Rate'</span>].<span class="bu">str</span>[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Teacher Survey Response Rate'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Teacher Survey Response Rate'</span>].<span class="bu">str</span>[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Parent Survey Response Rate'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Parent Survey Response Rate'</span>].<span class="bu">str</span>[:<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#convert all metric value columns to numeric</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>df.loc[:, df.columns.<span class="bu">str</span>.contains(<span class="st">'Metric Value'</span>)] <span class="op">=</span> df.loc[:, df.columns.<span class="bu">str</span>.contains(<span class="st">'Metric Value'</span>)].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#convert remaining columns</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Metric Value - 4-Year Graduation Rate - Special Class, Integrated Co-Teaching, or SETSS'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Metric Value - 4-Year Graduation Rate - Special Class, Integrated Co-Teaching, or SETSS'</span>])</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Metric Value - 4-Year Graduation Rate - English Language Learners'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Metric Value - 4-Year Graduation Rate - English Language Learners'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Post cleaning data check</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>float64    224
+object       4
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check remaining objects - keep these for EDA</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df.select_dtypes(include<span class="op">=</span>[<span class="st">'object'</span>]).columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>Index(['DBN', 'School Name', 'District', 'Borough'], dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-19" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save processed df to csv</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'../../data/processed-data/processed_df.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># post cleaning df.head check</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">DBN</th>
+<th data-quarto-table-cell-role="th">School Name</th>
+<th data-quarto-table-cell-role="th">Enrollment</th>
+<th data-quarto-table-cell-role="th">Rigorous Instruction - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Collaborative Teachers - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Supportive Environment - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Effective School Leadership - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Strong Family-Community Ties - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Trust - Percent Positive</th>
+<th data-quarto-table-cell-role="th">Quality Review - How interesting and challenging is the curriculum</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Chemistry Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the English Regents exam in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Earth Science Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Geometry Regents exam in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Global History Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the US History Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Algebra I Regents exam in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">Metric Value - % of students who took the Living Environment Regents in the current year who scored 65+</th>
+<th data-quarto-table-cell-role="th">District</th>
+<th data-quarto-table-cell-role="th">Borough</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>01M292</td>
+<td>Orchard Collegiate Academy</td>
+<td>269.0</td>
+<td>0.73</td>
+<td>0.88</td>
+<td>0.80</td>
+<td>0.87</td>
+<td>0.81</td>
+<td>0.90</td>
+<td>2.0</td>
+<td>...</td>
+<td>0.524</td>
+<td>0.770</td>
+<td>0.622</td>
+<td>0.556</td>
+<td>0.783</td>
+<td>0.612</td>
+<td>0.451</td>
+<td>0.615</td>
+<td>01</td>
+<td>Manhattan</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>01M448</td>
+<td>University Neighborhood High School</td>
+<td>485.0</td>
+<td>0.83</td>
+<td>0.93</td>
+<td>0.86</td>
+<td>0.94</td>
+<td>0.85</td>
+<td>0.95</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.355</td>
+<td>0.747</td>
+<td>0.752</td>
+<td>0.667</td>
+<td>0.759</td>
+<td>0.648</td>
+<td>0.772</td>
+<td>0.744</td>
+<td>01</td>
+<td>Manhattan</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>01M450</td>
+<td>East Side Community School</td>
+<td>389.0</td>
+<td>0.82</td>
+<td>0.89</td>
+<td>0.81</td>
+<td>0.89</td>
+<td>0.92</td>
+<td>0.92</td>
+<td>1.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>0.908</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>01</td>
+<td>Manhattan</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>01M539</td>
+<td>New Explorations into Science, Technology and ...</td>
+<td>620.0</td>
+<td>0.80</td>
+<td>0.85</td>
+<td>0.78</td>
+<td>0.82</td>
+<td>0.93</td>
+<td>0.90</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.842</td>
+<td>0.975</td>
+<td>NaN</td>
+<td>0.895</td>
+<td>1.000</td>
+<td>0.894</td>
+<td>0.889</td>
+<td>0.957</td>
+<td>01</td>
+<td>Manhattan</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>01M696</td>
+<td>Bard High School Early College</td>
+<td>565.0</td>
+<td>0.79</td>
+<td>0.78</td>
+<td>0.77</td>
+<td>0.80</td>
+<td>0.87</td>
+<td>0.90</td>
+<td>1.0</td>
+<td>...</td>
+<td>0.521</td>
+<td>0.927</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0.871</td>
+<td>0.925</td>
+<td>0.667</td>
+<td>NaN</td>
+<td>01</td>
+<td>Manhattan</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 228 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># post cleaning missingness check</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">False</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values After Cleaning"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-NYCPublicSchoolsInfoHub_2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline"><a href="https://infohub.nyced.org/docs/default-source/default-document-library/2022-23-educator-guide-d75.pdf"><em>NYC Public Schools InfoHub</em> (2024)</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -30,3 +30,7 @@ Provide their name, a link to their "About Me" page.
 
 * [x] started literature review
 * [x] started collecting data
+
+**M: 11-25-2024** 
+
+* [x] write up data cleaning section and insert code
