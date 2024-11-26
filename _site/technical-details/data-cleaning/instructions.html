@@ -266,14 +266,10 @@ div.csl-indent {
 <section id="start" class="level1">
 <h1>Start</h1>
 <p><strong>Data Cleaning</strong>:</p>
-<p>The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.</p>
+<p>The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. The data I am using contains 600+ columns, which will need to be cut down to what is useful for analysis. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.</p>
 <p>I relied on a NYC Public School’s School Quality Reports Educator Guide: High Schools 2022–23<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span> as a data dictionary to understand what a lot of the columns were expressing and clean accordingly.</p>
-<p><strong>Managing Missing Data</strong>: According to the Educator Guide, metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing.</p>
-<p>In addition, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much.</p>
-<ul>
-<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
-<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
-</ul>
+<p><strong>Managing Missing Data</strong>: According to the Educator Guide, “metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers”<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing.</p>
+<p>Further, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much. I then imputed data that was missing less than 10% of the data. I imputed based on the skew of the distribution, if the skew was greater than the absolute value of 0.5, I used median to impute, and if the skew appeared to be a normal position, I used the mean to impute. I then removed the remaining three columns with missingness that did not meet the threshold to obtain a complete dataset.</p>
 <p><strong>Outlier Detection and Treatment</strong>:</p>
 <ul>
 <li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
@@ -282,7 +278,7 @@ div.csl-indent {
 </ul>
 <p><strong>Data Type Correction and Formatting</strong>:</p>
 <p>Before processing, the data types summary shows: | float64 | 346 | | object | 317 |</p>
-<p>After processing and removing rows, the summary shows: | float64 | 224 | | object | 4 |</p>
+<p>After processing and removing rows, the summary shows: | float64 | 64 | | object | 4 |</p>
 <p>The remaining object columns are ‘DBN’, ‘School Name’, ‘District’, and ‘Borough’. We will keep these for EDA purposes.</p>
 <p>I used sklearn’s ordinal encoder to encode the categorical values of quality review columns. The value provided were : ‘Developing’ ‘Well Developed’, ‘Proficient’. I encoded them in this order and handled unkown values as -1.</p>
 <p>Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.</p>
