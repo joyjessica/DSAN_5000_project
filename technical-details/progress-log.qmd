@@ -2,29 +2,17 @@
 title: "Progress log"
 ---
 
-Use this page to track your progress and keep a log of your contributions to the project, please update this each time you work on your project, it is generally a good habit to adopt.
-
-
-## To-do
-
-* [ ] Explore possible topics by brainstorming with GPT 
-* [ ] write a technical methods sections for K-means
-* [ ] write a technical methods sections for PCA
-
-... etc 
-
 ## Jessica Joy:
 
-Provide their name, a link to their "About Me" page.
+link to "About Me" page
 
 
-**Weekly project contribution log:**
+**Project contribution log:**
 
 
 **M: 11-04-2024** 
 
 * [x] brainstorming topics with GPT 
-
 
 **T: 11-14-2024** 
 
@@ -43,3 +31,9 @@ Provide their name, a link to their "About Me" page.
 
 * [x] add random forest, boosting algorithms to regression
 * [x] work on binary classification
+
+**F: 12-12-2024** 
+* [x] add Lasso regression
+
+**F: 12-13-2024** 
+* [x] explain machine learning methods
