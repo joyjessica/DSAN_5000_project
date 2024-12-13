@@ -2,19 +2,19 @@
 title: "LLM usage log"
 ---
 
-This page can serve as a "catch-all" for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.
-
 LLM tools were used in the following way for the tasks below
 
 ## Brainstorming
 
 * Chat GPT was used to brainstorm project ideas and provide feedback and refine the project plan.
+* Use Chat GPT to decide what relevant columns to get from 10,000+ columns of Census Data
 
 ## Writing: 
 
 * Reformating text from bulleted lists into proses 
 * Proofreading
 * Text summarization for literature review 
+* Used to convert formulas written into Latex format for readibility
 
 ## Code: 
 
