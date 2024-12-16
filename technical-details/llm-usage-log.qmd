@@ -19,4 +19,4 @@ LLM tools were used in the following way for the tasks below
 ## Code: 
 
 * Code commenting and explanatory documentation 
-* Used to aid in API documentation
+* ChatGPT was used to aid in generating code to navigate the American Community Survey Census API
