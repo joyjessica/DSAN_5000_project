@@ -1,3 +1,9 @@
+---
+title: "Final Report"
+bibliography: ../../assets/references.bib
+
+---
+
 # Final Report
 
 
@@ -39,44 +45,64 @@ These are just examples, you can use any structure that is suitable for your pro
 - **Conclusion**: Recap the main findings and societal impact.
    *Example*: "Understanding pollution's health impacts will help create healthier cities."
 
-### Case-2: Business-Oriented Projects
 
-- **Executive Summary**: Summarize key findings and their relevance to business goals.
-   *Example*: "This report predicts customer churn and offers strategies to reduce churn by 15%."
-- **Objective**: Define the problem or question addressed.
-   *Example*: "This project aims to identify the drivers of customer churn."
-- **Key Insights**: Present the most important, actionable insights.
-   *Example*: "Customers who interact with support twice within 30 days are 25% less likely to churn."
-- **Visualizations**: Use clear graphs to convey key insights.
-   *Example*: A bar chart showing churn likelihood based on engagement.
-- **Business Implications**: Explain how findings impact business outcomes and offer specific recommendations.
-   *Example*: "Focus retention efforts on low-engagement customers."
-- **Recommendations**: Provide clear, actionable steps with projections.
-   *Example*: "Implement an automated retention campaign, reducing churn by 10%."
-- **Conclusion**: Summarize findings and suggest next steps.
-   *Example*: "Addressing churn drivers can reduce loss and improve profitability."
-- **Appendix** (Optional): Additional charts or explanations for further insights.
+## Breaking the Cycle: Key Findings and Takeaways
 
-## Final Tips
+High school dropout rates have a profound impact on students, families, and communities. To bring these numbers down, we first need to understand what’s driving them. This study takes a closer look at how the quality of schools and the socioeconomic challenges students face influence high school outcomes in New York City. By diving into these factors, we aim to uncover ways to help students succeed.
 
-- **Simplicity**: Avoid jargon; focus on business-relevant insights.
-- **Visual Focus**: Prioritize charts and graphs over dense text.
-- **Emphasize Impact**: Always link data insights to business outcomes.
+### Scope
+1. Collect and clean data, creating a comprehensive dataset of NYC high schools
+2. Perform exploratory data analysis to uncover trends in the data
+3. Perform unsupervised learning and supervised learning to find real relationships between our features and targets: chronic absenteeism, dropout rates, and college persistence
+4. Summarize findings into actionable insights
 
-## Start
-"This study explores how school quality and socioeconomic factors affects high school graduation outcomes in New York City."
+### Exploring the Data
+This dataset contains 500 New York City public high schools. We can begin by taking a look at dropout rates across New York City Boroughs, revealing areas of needed intervention.
 
 :::{.grid}
-::: {.g-col-4}
-![](../images/graphs/boroughs.png){width=200 height=300}
+::: {.g-col-6}
+
+![](../images/graphs/boroughs.jpg){width=100% height=auto}
 :::
-::: {.g-col-8}
-![](../images/graphs/graph6.png){width=200 height=300}
+::: {.g-col-6}
+![](../images/graphs/graph6.png){width=100% height=auto}
+
 :::
 :::
 It is evident that the highest median drop out rate is in the Bronx, followed by Brooklyn. Although there are some high outliers in Queens. This highlights boroughs where intervention is necessary. To take a closer look, we can look at drop out rates by specific NYC school districts.
-![](../images/graphs/districts.png){width=200 height=300}
 
-This plot shows the clear highest drop out rate to be in district 12, which is located in the Bronx. Next is district 8 which is also located in the Bronx. This plot makes it easier to pinpoint school districts that need to be targeted.
+<p align="center">
+![](../images/graphs/districts.png){width=600 height=300}
+</p>
 
-This study highlights the need for early intervention in schools to avoid absenteeism, drop out, and increase college persistence.
+
+This plot clearly shows the highest drop out rate to be in district 12, which is located in the Bronx. Next is district 8 which is also located in the Bronx. This plot makes it easier to pinpoint school districts that need to be targeted.
+
+Next, we can take a look at specific socioeconomic and school features that we hypothesize will have an impact on our targets.
+:::{.grid}
+::: {.g-col-6}
+
+![](../images/graphs/graph1.png){width=100% height=auto}
+:::
+::: {.g-col-6}
+![](../images/graphs/graph2.png){width=100% height=auto}
+
+:::
+:::
+Using statistical testing, we were able to conclude that there is a statistically significant difference in mean median household income for high schools with high rates of drop out and high schools with low rates of dropout. This suggests that students from higher-income households, likely with parents with degrees and employment, and are less likely to drop out themselves. This emphasizes the importance of addressing economic disparities to improve these rates.
+
+Supportive Environment score comes from the NYC Quality report and is defined as, "reflects how well the school establishes a culture where students feel safe, challenged to grow, and supported to meet high expectations." There is a statistically significant difference in the mean supportive environment score for a school with high and low rates of chronic absenteeism. This is important because it shows that when students feel good about the school environment, and feel a sense of value and community, theyre less likely to skip class or be absent.
+
+![](../images/graphs/graph 3.png){width=100% height=auto}
+
+### Unsupervised Learning
+
+### Supervised Learning
+
+### Key Takeaways
+* **Grade 8 Proficiency** is a crucial indicator of future success, highlighting the importance of early intervention to address academic challenges before they escalate
+* **Supportive and Trusting Environments** contribute to better student outcomes, emphasizing the need for schools to create cultures where students feel safe, supported, and motivated
+* **Economic Disadvantage** plays a significant role in long-term outcomes such as college persistence, with students from lower-income backgrounds facing more barriers to succes
+* **The Connection:** Chronic absenteeism, dropout rates, and college persistence are closely linked. Addressing absenteeism early is key to preventing dropout and ensuring students stay on track for college success.
+
+By identifying and understanding the key drivers, such as supportive environment and socioeconomic factors, we can develop targeted strategies to support students more effectively. Empowering schools to create safe, supportive, and inclusive environments, while addressing broader economic challenges, is essential to ensure that every student has the opportunity to succeed academically and beyond.
