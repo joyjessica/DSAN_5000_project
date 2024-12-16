@@ -1,54 +1,19 @@
 ---
 title: "Final Report"
-bibliography: ../../assets/references.bib
+bibliography: ../assets/references.bib
 
 ---
-
-# Final Report
-
-
-This report is designed for a **non-technical audience** (e.g., the general public, executives, marketing teams, or clients), focusing on **high-level insights**, **actionable results**, and **visualizations** to convey the impact without requiring technical knowledge. The goal is to highlight how a model affects business strategy or revenue without diving into complex methods.
-
-## Guidelines for Creating a Good Narrative
-
-- **Clear Purpose**: Define the core message or objective early on.
-- **Know Your Audience**: Adjust language, tone, and detail based on the audience’s understanding.
-- **Strong Opening**: Start with a hook that sets context and stakes.
-- **Logical Flow**: Structure with a clear beginning, middle, and end.
-- **Key Insights**: Highlight the most important points; avoid unnecessary details or jargon.
-- **Data Support**: Use data to enhance the narrative without overwhelming.
-- **Visuals**: Incorporate charts to simplify ideas and engage the audience.
-- **Actionable Takeaways**: Conclude with recommendations or next steps.
-- **Authenticity**: Use storytelling to make the content engaging and relatable.
-- **Revise**: Edit for clarity and impact, removing unnecessary content.
-  
-## Report Content
-
-These are just examples, you can use any structure that is suitable for your project.
-
-### Case-1: Academic-Oriented Projects
-
-- **Introduction**: Provide an accessible overview and explain the motivation and importance of the research.
-   *Example*: "This study explores how climate change affects local ecosystems, vital for wildlife conservation."
-- **Objective**: Clearly define the research goal and relate it to real-world challenges.
-   *Example*: "We aim to analyze the effects of air pollution on public health in urban areas."
-- **Key Findings**: Present insights without technical terms, focusing on the impact.
-   *Example*: "Air pollution increases the risk of respiratory diseases by 20%."
-- **Methodology Overview**: Briefly explain relevant methods.
-   *Example*: "We analyzed air quality data from 50 cities and surveyed 10,000 residents."
-- **Visualizations**: Use simple graphs and infographics to convey findings.
-   *Example*: A map showing pollution levels and a bar chart of health risks.
-- **Societal Implications**: Highlight the broader impact.
-   *Example*: "This study highlights the need for better air quality policies."
-- **Call to Action**: Offer recommendations based on findings.
-   *Example*: "We recommend city planners invest in green spaces."
-- **Conclusion**: Recap the main findings and societal impact.
-   *Example*: "Understanding pollution's health impacts will help create healthier cities."
-
 
 ## Breaking the Cycle: Key Findings and Takeaways
 
 High school dropout rates have a profound impact on students, families, and communities. To bring these numbers down, we first need to understand what’s driving them. This study takes a closer look at how the quality of schools and the socioeconomic challenges students face influence high school outcomes in New York City. By diving into these factors, we aim to uncover ways to help students succeed.
+
+### Data Science Questions:
+1. How does a school’s environment contribute to better student outcomes?
+2. What are the most significant predictors of student absenteeism, dropout rates and college persistence?
+3. What are the interactions between chronic absenteeism, dropout rates, and college persistence?
+4. How does socioeconomic status impact student absenteeism, dropout rates and college persistence?
+5. How can early academic indicators be used to identify schools at risk of high dropout or not persisting in college?
 
 ### Scope
 1. Collect and clean data, creating a comprehensive dataset of NYC high schools
@@ -79,6 +44,7 @@ It is evident that the highest median drop out rate is in the Bronx, followed by
 This plot clearly shows the highest drop out rate to be in district 12, which is located in the Bronx. Next is district 8 which is also located in the Bronx. This plot makes it easier to pinpoint school districts that need to be targeted.
 
 Next, we can take a look at specific socioeconomic and school features that we hypothesize will have an impact on our targets.
+
 :::{.grid}
 ::: {.g-col-6}
 
@@ -89,6 +55,7 @@ Next, we can take a look at specific socioeconomic and school features that we h
 
 :::
 :::
+
 Using statistical testing, we were able to conclude that there is a statistically significant difference in mean median household income for high schools with high rates of drop out and high schools with low rates of dropout. This suggests that students from higher-income households, likely with parents with degrees and employment, and are less likely to drop out themselves. This emphasizes the importance of addressing economic disparities to improve these rates.
 
 Supportive Environment score comes from the NYC Quality report and is defined as, "reflects how well the school establishes a culture where students feel safe, challenged to grow, and supported to meet high expectations." There is a statistically significant difference in the mean supportive environment score for a school with high and low rates of chronic absenteeism. This is important because it shows that when students feel good about the school environment, and feel a sense of value and community, theyre less likely to skip class or be absent.

@@ -12,13 +12,14 @@ Dropping out of high school has often been linked to many long term negative out
 
 This research is intended to inform policymakers, researchers, and data enthusiasts interested in understanding the factors that contribute to chronic absenteeism, dropout rates, and college persistence. I hypothesize that these three outcomes are interconnected. For instance, high chronic absenteeism may correlate with higher dropout rates, and even if students avoid dropping out of high school, could there still be a risk of low college persistence? These are the key questions I aim to address through this research. 
 
+
 ### Data Science Questions:
 
-1. What borough or district-level differences exist in student outcomes? - use ANOVA to assess statistical diff
-2. How does economic need affect access to college preparation?
-3. How do neighborhood-level metrics, like housing stability or crime rates, influence chronic absenteeism?
-4. Can we predict what schools have a likelihood of high drop out risk out based on school characteristics?
-5. What is the relationship between student diversity and advanced course enrollment?
+1. How does a school’s environment contribute to better student outcomes?
+2. What are the most significant predictors of student absenteeism, dropout rates and college persistence?
+3. What are the interactions between chronic absenteeism, dropout rates, and college persistence?
+4. How does socioeconomic status impact student absenteeism, dropout rates and college persistence?
+5. How can early academic indicators be used to identify schools at risk of high dropout or not persisting in college?
 
 ### Relevant Current Research
 
