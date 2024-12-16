@@ -753,21 +753,28 @@
     "href": "aboutme.html",
     "title": "About Me",
     "section": "",
-    "text": "Jessica Joy is a full-time student in the Data Science and Analytics program at Georgetown University. She earned her Bachelor of Science in Financial Economics from Binghamton University in 2020. Before joining the DSAN program, she worked as a senior data analyst at EssenceMediacom, a marketing agency in New York City, where she contributed to various projects, including Marketing Mix Models and ad optimizations. She is excited to further develop her data skills and apply them to other industries, particularly social services."
+    "text": "Jessica Joy is a full-time student in the Data Science and Analytics program at Georgetown University. She earned her Bachelor of Science in Financial Economics from Binghamton University in 2020. Before joining the DSAN program, she worked as a senior data analyst at EssenceMediacom, a marketing agency in New York City, where she contributed to various projects, including Marketing Mix Models and ad optimizations. She is excited to further develop her data skills and apply them to other industries."
+  },
+  {
+    "objectID": "aboutme.html#skills",
+    "href": "aboutme.html#skills",
+    "title": "About Me",
+    "section": "Skills",
+    "text": "Skills"
   },
   {
     "objectID": "aboutme.html#education",
     "href": "aboutme.html#education",
     "title": "About Me",
-    "section": "EDUCATION",
-    "text": "EDUCATION\n\nGeorgetown University\nMS Data Science and Analytics (Expected May 2026)\nCurrent relevant coursework:\n\nData Science and Analytics\n\nProbabilistic Modeling and Statistical Computing\n\nComputational Linguistics with Advanced Python\n\nBinghamton University\nBS Financial Economics (May 2020)\nMajor GPA: 3.78/4.00\nInvolvement/Activities:\n\nStudent-Athlete Success Center, Microeconomics Theory and Macroeconomics Tutor\n\nAlpha Epsilon Phi, Treasury Committee\n\nHelping Hand Project, Founding Member"
+    "section": "Education",
+    "text": "Education\n\nGeorgetown University\nMS Data Science and Analytics (Expected May 2026)\nCurrent relevant coursework:\n\nData Science and Analytics\n\nProbabilistic Modeling and Statistical Computing\n\nComputational Linguistics with Advanced Python\n\nBinghamton University\nBS Financial Economics (May 2020)\nMajor GPA: 3.78/4.00\nInvolvement/Activities:\n\nStudent-Athlete Success Center, Microeconomics Theory and Macroeconomics Tutor\n\nAlpha Epsilon Phi, Treasury Committee\n\nHelping Hand Project, Founding Member"
   },
   {
     "objectID": "aboutme.html#professional-experience",
     "href": "aboutme.html#professional-experience",
     "title": "About Me",
-    "section": "PROFESSIONAL EXPERIENCE",
-    "text": "PROFESSIONAL EXPERIENCE\nEssenceMediacom: New York, NY\nSenior Analyst, Data Science and Modeling (June 2021 – August 2024)\n\nDeveloped end-to-end Marketing Mix Models (MMM) for major clients, improving data processing and efficiency of 10M+ rows of creative data using Python, R, and SQL. Applied multiple linear regression modeling and validation to create final deliverables of actionable insights, resulting in increased marketing ROI.\n\nConstructed a budget allocation tool using marketing mix model outputs, optimizing media mix strategies and driving up to a 30% increase in incremental revenue growth for clients.\n\nProvided strategic consultation to Dell, leveraging vision AI data and advanced machine learning algorithms (Linear/Logistic Regression, K-Means Clustering, PCA) to analyze 200+ variables, potentially increasing KPIs by 130% through creative attribute optimization.\n\nStrengthened new business pitches by building a database of 70+ marketing metrics for the “Remarkability Index,” effectively evaluating investments and securing new clients."
+    "section": "Professional Experience",
+    "text": "Professional Experience\nEssenceMediacom: New York, NY\nSenior Analyst, Data Science and Modeling (June 2021 – August 2024)\n\nDeveloped end-to-end Marketing Mix Models (MMM) for major clients, improving data processing and efficiency of 10M+ rows of creative data using Python, R, and SQL. Applied multiple linear regression modeling and validation to create final deliverables of actionable insights, resulting in increased marketing ROI.\n\nConstructed a budget allocation tool using marketing mix model outputs, optimizing media mix strategies and driving up to a 30% increase in incremental revenue growth for clients.\n\nProvided strategic consultation to Dell, leveraging vision AI data and advanced machine learning algorithms (Linear/Logistic Regression, K-Means Clustering, PCA) to analyze 200+ variables, potentially increasing KPIs by 130% through creative attribute optimization.\n\nStrengthened new business pitches by building a database of 70+ marketing metrics for the “Remarkability Index,” effectively evaluating investments and securing new clients."
   },
   {
     "objectID": "report/report.html",
