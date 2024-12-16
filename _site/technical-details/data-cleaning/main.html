@@ -212,19 +212,8 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#general-comments" id="toc-general-comments" class="nav-link" data-scroll-target="#general-comments">General comments:</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  </ul></li>
-  <li><a href="#start" id="toc-start" class="nav-link" data-scroll-target="#start">Start</a>
-  <ul class="collapse">
-  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
-  <li><a href="#handle-data-types" id="toc-handle-data-types" class="nav-link" data-scroll-target="#handle-data-types">Handle Data Types</a></li>
-  <li><a href="#handle-missingness" id="toc-handle-missingness" class="nav-link" data-scroll-target="#handle-missingness">Handle Missingness</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link active" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -250,113 +239,9 @@ div.csl-indent {
 </header>
 
 
-<!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you on this page will be specific you your project and data. Some things might “make more sense” on other pages, depending on your workflow, for example, you might feel that normalization and scaling should be included in a later section, dealing with machine learning, rather than here, that is totally fine. Organize your project in the way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-</section>
-<section id="general-comments" class="level2">
-<h2 class="anchored" data-anchor-id="general-comments">General comments:</h2>
-<ul>
-<li><strong>Iterative Process</strong>: Data cleaning is often not a one-time process. As your analysis progresses, you may need to revisit the cleaning phase, and re-run the code, to adjust to new insights or requirements.</li>
-<li><strong>Clarity and Reproducibility</strong>: Ensure your documentation is clear and thorough. Others should be able to follow your steps and achieve the same results.</li>
-<li><strong>Visualizations</strong>: Use before-and-after visualizations to illustrate the impact of your cleaning steps, making the process more intuitive and transparent.</li>
-</ul>
-<p>By the end of this phase, your cleaned data should be well-documented and ready for further stages, such as <strong>Exploratory Data Analysis (EDA)</strong> and <strong>Machine Learning</strong>.</p>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>The <strong>Data Cleaning</strong> page of your portfolio is where you document the process of transforming your raw data into a usable format. Data cleaning is essential for ensuring the quality of your analysis, and this page should serve as a clear and reproducible guide for anyone reviewing your work. It also provides transparency, allowing others to trace the steps you took to prepare your data.</p>
-<p>The following is a guide to help you get started with possible thing to address on this page .</p>
-<ul>
-<li><strong>Description of the Data Cleaning Process</strong>: Explain the steps you took to clean and preprocess the data.</li>
-<li><strong>Code Documentation</strong>: Provide the code used in the data cleaning process (link to GitHub or embed the code directly).</li>
-<li><strong>Provide examples of data before and after cleaning</strong>: e.g.&nbsp;with df.head() or df.describe()</li>
-<li><strong>Raw and Cleaned Data Links</strong>: Ensure your page links to both the original (raw) dataset and the cleaned dataset. (please keep organized and store the cleaned data in <code>data/processed-data</code>, or similar location which doesn’t get synced to GitHub)</li>
-</ul>
-<p>Possible things to include:</p>
-<p><strong>Introduction to Data Cleaning</strong>:</p>
-<ul>
-<li>Provide a brief explanation of the data cleaning phase, its importance in preparing the data for further analysis (EDA, modeling), and its iterative nature.</li>
-<li>Mention that data cleaning may need to be revisited as the project evolves and analysis goals change.</li>
-</ul>
-<p><strong>Managing Missing Data</strong>:</p>
-<ul>
-<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
-<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
-<li><strong>Visualize Missing Data</strong>: Include visualizations (e.g., heatmaps) showing missing values before and after handling them.</li>
-</ul>
-<p><strong>Outlier Detection and Treatment</strong>:</p>
-<ul>
-<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
-<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
-<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
-</ul>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<ul>
-<li><strong>Review Data Types</strong>: Summarize the types of variables (numerical, categorical, date-time, etc.) and ensure they are correctly formatted.</li>
-<li><strong>Transformation</strong>: Document any transformations performed, such as converting date formats, handling categorical variables, or encoding labels.</li>
-<li><strong>Impact of Changes</strong>: Briefly explain why these changes were necessary for accurate analysis.</li>
-</ul>
-<p><strong>Normalization and Scaling</strong>:</p>
-<ul>
-<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
-<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
-<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
-</ul>
-<p><strong>Subsetting the Data</strong>:</p>
-<ul>
-<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
-<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
-</ul>
-</section>
-</section>
-<section id="start" class="level1">
-<h1>Start</h1>
-<p><strong>Data Cleaning</strong>:</p>
-<p>The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. The data I am using contains 600+ columns, which will need to be cut down to what is useful for analysis. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.</p>
-<p>I relied on a NYC Public School’s School Quality Reports Educator Guide: High Schools 2022–23<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span> as a data dictionary to understand what a lot of the columns were expressing and clean accordingly.</p>
-<p><strong>Managing Missing Data</strong>: According to the Educator Guide, “metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers”<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing.</p>
-<p>Further, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much. I then imputed data that was missing less than 10% of the data. I imputed based on the skew of the distribution, if the skew was greater than the absolute value of 0.5, I used median to impute, and if the skew appeared to be a normal position, I used the mean to impute. I then removed the remaining three columns with missingness that did not meet the threshold to obtain a complete dataset.</p>
-<p><strong>Outlier Detection and Treatment</strong>:</p>
-<ul>
-<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
-<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
-<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
-</ul>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<p>Before processing, the data types summary shows: | float64 | 346 | | object | 317 |</p>
-<p>After processing and removing rows, the summary shows: | float64 | 64 | | object | 4 |</p>
-<p>The remaining object columns are ‘DBN’, ‘School Name’, ‘District’, and ‘Borough’. We will keep these for EDA purposes.</p>
-<p>I used sklearn’s ordinal encoder to encode the categorical values of quality review columns. The value provided were : ‘Developing’ ‘Well Developed’, ‘Proficient’. I encoded them in this order and handled unkown values as -1.</p>
-<p>Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.</p>
-<p><strong>Normalization and Scaling</strong>:</p>
-<ul>
-<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
-<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
-<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
-</ul>
-<p><strong>Subsetting the Data</strong>:</p>
-<ul>
-<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
-<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
-</ul>
-<p>I chose to work with this particular subset of the data becasue it retains the the information of the columns I am interested in exploring. I chose to drop columns that were too granular such as specific Regents subjects. In addition, some metric columns contained the same info as the ‘Metric Value’ columns that I kept, so I was able to get rid of N count, metric rating, metric score, comparison group, and positive response columns.</p>
-<p>The data cleaning phase is a vital, and often extremely time consuming part of a machine learning project. The data I am using contains 600+ columns, which will need to be cut down to what is useful for analysis. It is important to use extra care in preparing the data for future EDA and modeling. As we explore the data more, we often uncover additional issues that need to be taken care of, especially when dealing with large datasets where identifying every issue upfront is impossible. This is why data cleaning is considered an iterative process and will probably need to be updated as the project progresses.</p>
-<p>I relied on a NYC Public School’s School Quality Reports Educator Guide: High Schools 2022–23<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span> as a data dictionary to understand what a lot of the columns were expressing and clean accordingly.</p>
-<div id="cell-3" class="cell" data-execution_count="7">
+<p>The data cleaning phase is a crucial and often time-consuming part of any machine learning project. The dataset I am working with contains over 600 columns, which need to be narrowed down to the most relevant ones for analysis. Preparing the data carefully is essential for successful exploratory data analysis (EDA) and modeling. During the process, new issues often arise, particularly when working with large datasets where it’s impossible to anticipate every challenge upfront. This is why data cleaning is considered an iterative process that evolves as the project progresses.</p>
+<p>To ensure the data is cleaned accurately, I relied on the NYC Public Schools’ School Quality Reports Educator Guide: High Schools 2022–23<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span> as a data dictionary. This guide helped me understand the meaning behind many of the columns, allowing me to clean and organize the data effectively for future analysis.</p>
+<div id="cell-2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -368,77 +253,76 @@ div.csl-indent {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">'future.no_silent_downcasting'</span>, <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Read in data</p>
 <div id="cell-4" class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>quality_tabs <span class="op">=</span> pd.read_excel(<span class="st">'../../data/raw-data/202223-hs-sqr-results.xlsx'</span>, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">506</span>, sheet_name<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ACS_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/ACS_data.csv'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/dropout_data.csv'</span>, index_col<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>mapping_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/mapping/2021_DOE_High_School_Directory.csv'</span>, index_col<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quality_tabs <span class="op">=</span> pd.read_excel(<span class="st">'../../data/raw-data/202223-hs-sqr-results.xlsx'</span>, skiprows<span class="op">=</span><span class="dv">3</span>, nrows<span class="op">=</span><span class="dv">506</span>, sheet_name<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ACS_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/ACS_data.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/raw-data/dropout_data.csv'</span>, index_col<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mapping_df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/mapping/2021_DOE_High_School_Directory.csv'</span>, index_col<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concat 4 dicts of quality sheets</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> pd.concat(quality_tabs.values(), axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#remove first row</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> df_quality.iloc[<span class="dv">1</span>: , :]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#drop duplicated columns</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> df_quality.loc[:, <span class="op">~</span>df_quality.T.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Concat 4 dicts of quality sheets, remove first row, drop duplicated columns</p>
+<div id="cell-6" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> pd.concat(quality_tabs.values(), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> df_quality.iloc[<span class="dv">1</span>: , :]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_quality <span class="op">=</span> df_quality.loc[:, <span class="op">~</span>df_quality.T.duplicated(keep<span class="op">=</span><span class="st">'first'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="56">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get columns we want from mapping</span></span>
+<p>Get columns we want from mapping, add zip code to df</p>
+<div id="cell-8" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#get columns </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_mapping <span class="op">=</span> mapping_df[[<span class="st">'dbn'</span>,<span class="st">'postcode'</span>]]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df_mapping.rename(columns<span class="op">=</span>{<span class="st">"dbn"</span>: <span class="st">"DBN"</span>, <span class="st">"postcode"</span>: <span class="st">"zip code"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#add zip code to df</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_quality.merge(df_mapping, on<span class="op">=</span><span class="st">'DBN'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find missing zip codes and export as csv</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>missing_school_zips <span class="op">=</span> df.loc[df[<span class="st">'zip code'</span>].isna()]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>missing_school_zips[[<span class="st">'DBN'</span>, <span class="st">'School Name'</span>]].drop_duplicates().to_csv(<span class="st">'../../data/mapping/missing_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Find missing zip codes and export as csv</p>
+<div id="cell-10" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>missing_school_zips <span class="op">=</span> df.loc[df[<span class="st">'zip code'</span>].isna()]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>missing_school_zips[[<span class="st">'DBN'</span>, <span class="st">'School Name'</span>]].drop_duplicates().to_csv(<span class="st">'../../data/mapping/missing_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#manually impute zip codes and read back in filled df</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>map2 <span class="op">=</span> pd.read_csv(<span class="st">'../../data/mapping/missing_list_labeled.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Manually impute zip codes and read back in filled df</p>
+<div id="cell-12" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>map2 <span class="op">=</span> pd.read_csv(<span class="st">'../../data/mapping/missing_list_labeled.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge again and fill in missing zip codes</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(map2, on<span class="op">=</span><span class="st">'DBN'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'zip code'</span>] <span class="op">=</span> df[<span class="st">'zip code'</span>].fillna(df[<span class="st">'zipcode1'</span>])</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'school_name1'</span>, <span class="st">'zipcode1'</span>],inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Merge again and fill in missing zip codes</p>
+<div id="cell-14" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(map2, on<span class="op">=</span><span class="st">'DBN'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'zip code'</span>] <span class="op">=</span> df[<span class="st">'zip code'</span>].fillna(df[<span class="st">'zipcode1'</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'school_name1'</span>, <span class="st">'zipcode1'</span>],inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add in ACS data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ACS_df[<span class="st">'zip code tabulation area'</span>] <span class="op">=</span> pd.to_numeric(ACS_df[<span class="st">'zip code tabulation area'</span>])</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ACS_df.rename(columns<span class="op">=</span>{<span class="st">"zip code tabulation area"</span>: <span class="st">"zip code"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(ACS_df, on<span class="op">=</span><span class="st">'zip code'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Add in ACS data</p>
+<div id="cell-16" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ACS_df[<span class="st">'zip code tabulation area'</span>] <span class="op">=</span> pd.to_numeric(ACS_df[<span class="st">'zip code tabulation area'</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ACS_df.rename(columns<span class="op">=</span>{<span class="st">"zip code tabulation area"</span>: <span class="st">"zip code"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(ACS_df, on<span class="op">=</span><span class="st">'zip code'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#clean get columns we want from dropout</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for 2018 cohort year - which will match up with 2022-23 data, filter school and student type </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'cohort_year'</span>]<span class="op">==</span><span class="dv">2018</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'report_category'</span>].<span class="bu">str</span>.contains(<span class="st">'School'</span>)]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'category'</span>]<span class="op">==</span><span class="st">'All Students'</span>]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#subset columns</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df[[<span class="st">'geographic_subdivision'</span>,<span class="st">'category'</span>,<span class="st">'school_name'</span>,<span class="st">'dropout_1'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clean get columns we want from dropout df, filter for 2018 cohort year - which will match up with 2022-23 data, filter school and student type</p>
+<div id="cell-18" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'cohort_year'</span>]<span class="op">==</span><span class="dv">2018</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'report_category'</span>].<span class="bu">str</span>.contains(<span class="st">'School'</span>)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.loc[dropout_df[<span class="st">'category'</span>]<span class="op">==</span><span class="st">'All Students'</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df[[<span class="st">'geographic_subdivision'</span>,<span class="st">'category'</span>,<span class="st">'school_name'</span>,<span class="st">'dropout_1'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate mean dropout rate per school</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dropout_df[<span class="st">'dropout_1'</span>] <span class="op">=</span> pd.to_numeric(dropout_df[<span class="st">'dropout_1'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>transformed_df <span class="op">=</span> dropout_df.groupby([<span class="st">'geographic_subdivision'</span>,<span class="st">'category'</span>,<span class="st">'school_name'</span>]).transform(<span class="st">'mean'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> pd.concat([dropout_df[[<span class="st">'geographic_subdivision'</span>, <span class="st">'category'</span>, <span class="st">'school_name'</span>]], transformed_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.drop_duplicates()</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dropout_df.rename(columns<span class="op">=</span>{<span class="st">"dropout_1"</span>: <span class="st">"dropout_rate"</span>, <span class="st">"school_name"</span>:<span class="st">"School Name"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df[[<span class="st">'School Name'</span>,<span class="st">'dropout_rate'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Calculate mean dropout rate per school</p>
+<div id="cell-20" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dropout_df[<span class="st">'dropout_1'</span>] <span class="op">=</span> pd.to_numeric(dropout_df[<span class="st">'dropout_1'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>transformed_df <span class="op">=</span> dropout_df.groupby([<span class="st">'geographic_subdivision'</span>,<span class="st">'category'</span>,<span class="st">'school_name'</span>]).transform(<span class="st">'mean'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> pd.concat([dropout_df[[<span class="st">'geographic_subdivision'</span>, <span class="st">'category'</span>, <span class="st">'school_name'</span>]], transformed_df], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df.drop_duplicates()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>dropout_df.rename(columns<span class="op">=</span>{<span class="st">"dropout_1"</span>: <span class="st">"dropout_rate"</span>, <span class="st">"school_name"</span>:<span class="st">"School Name"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dropout_df <span class="op">=</span> dropout_df[[<span class="st">'School Name'</span>,<span class="st">'dropout_rate'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#merge to final df</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dropout_df[<span class="st">'School Name'</span>] <span class="op">=</span> dropout_df[<span class="st">'School Name'</span>].<span class="bu">str</span>.lower()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'School Name'</span>] <span class="op">=</span> df[<span class="st">'School Name'</span>].<span class="bu">str</span>.lower()</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(dropout_df, on<span class="op">=</span><span class="st">'School Name'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Merge to final df</p>
+<div id="cell-22" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dropout_df[<span class="st">'School Name'</span>] <span class="op">=</span> dropout_df[<span class="st">'School Name'</span>].<span class="bu">str</span>.lower()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'School Name'</span>] <span class="op">=</span> df[<span class="st">'School Name'</span>].<span class="bu">str</span>.lower()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(dropout_df, on<span class="op">=</span><span class="st">'School Name'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pre cleaning df.head check</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pre cleaning df.head check</p>
+<div id="cell-24" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <div>
 
@@ -598,28 +482,28 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pre Cleaning data types</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pre Cleaning data types</p>
+<div id="cell-26" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 <pre><code>object     280
 float64    275
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make N&lt;15 NA</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;15'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;5'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#make values '&lt;95%' as max 95%</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'&gt; 95%'</span>, <span class="bu">int</span>(<span class="fl">0.95</span>)).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>According to the Educator Guide, “metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers”<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing. Similarly, we will make values that are ‘&lt;95%’ as their max 95%.</p>
+<div id="cell-28" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;15'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'N&lt;5'</span>, np.nan).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.replace(<span class="st">'&gt; 95%'</span>, <span class="bu">int</span>(<span class="fl">0.95</span>)).infer_objects(copy<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check pre cleaning missingness</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values Before Cleaning"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pre cleaning missingness</p>
+<div id="cell-30" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values Before Cleaning"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -628,143 +512,131 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#columns to remove by string</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Unnamed: remove NA columns</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#N count / metric rating / metric score / comparison group: we just need metric value % columns, these give the same info</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#positive responses / percent positive: remove borough and city positive response columns - we just need element score for these metrics</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#quality review: these metrics are included in the Element score metrics</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>string_check <span class="op">=</span> <span class="st">"Unnamed|N count|metric rating|metric score|comparison group|positive responses|percent positive|Quality Review"</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#we dont need granularity of scores by specific courses</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>specific_courses <span class="op">=</span> <span class="st">"Chemistry|Earth Science|Algebra|US History|Geometry|Global History|Living Environment|Credits"</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#exclude granularity of demographics</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>demographics <span class="op">=</span> <span class="st">'Asian|White|Native|Black|Hispanic|Male|Female|English Lang|ELL|IEPs|NYSAA'</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(string_check, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)]</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(specific_courses, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)]</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#df = df.loc[:, ~df.columns.str.contains(demographics, regex=True, case=False)]</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(demographics, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>) <span class="op">&amp;</span> <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'percent '</span>, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remove columns by string:</p>
+<p>Unnamed: remove NA columns</p>
+<p>N count / metric rating / metric score / comparison group: we just need metric value % columns, these give the same info</p>
+<p>positive responses / percent positive: remove borough and city positive response columns - we just need element score for these metrics</p>
+<p>quality review: these metrics are included in the Element score metrics</p>
+<p>Remove granular columns: scores by specific courses, demographics</p>
+<div id="cell-32" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>string_check <span class="op">=</span> <span class="st">"Unnamed|N count|metric rating|metric score|comparison group|positive responses|percent positive|Quality Review"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#specific courses</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>specific_courses <span class="op">=</span> <span class="st">"Chemistry|Earth Science|Algebra|US History|Geometry|Global History|Living Environment|Credits"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#demographics</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>demographics <span class="op">=</span> <span class="st">'Asian|White|Native|Black|Hispanic|Male|Female|English Lang|ELL|IEPs|NYSAA'</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(string_check, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>df.columns.<span class="bu">str</span>.contains(specific_courses, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)]</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(demographics, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>) <span class="op">&amp;</span> <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'percent '</span>, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>)))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-19" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop School Type (they are all High Schools) and columns with survey response questions, we have score columns for this</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'School Type'</span>,<span class="st">'Rigorous Instruction Rating'</span>,<span class="st">'Collaborative Teachers Rating'</span>,<span class="st">'Supportive Environment Rating'</span>,<span class="st">'Effective School Leadership Rating'</span>,<span class="st">'Strong Family-Community Ties Rating'</span>,<span class="st">'Trust Rating'</span>,<span class="st">'Student Achievement Rating'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Drop School Type (they are all High Schools) and columns with survey response questions, we have score columns for this</p>
+<div id="cell-34" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'School Type'</span>,<span class="st">'Rigorous Instruction Rating'</span>,<span class="st">'Collaborative Teachers Rating'</span>,<span class="st">'Supportive Environment Rating'</span>,<span class="st">'Effective School Leadership Rating'</span>,<span class="st">'Strong Family-Community Ties Rating'</span>,<span class="st">'Trust Rating'</span>,<span class="st">'Student Achievement Rating'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="feature-engineering" class="level3">
 <h3 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h3>
-<div id="cell-21" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#average rates that are 4 and 6 years then drop</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Graduation Rate'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - 6-Year Graduation Rate - All Students'</span>, <span class="st">'Metric Value - 4-Year Graduation Rate - All Students'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'% Attaining Regents Diploma'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - % Attaining Regents Diploma (4 year)'</span>, <span class="st">'Metric Value - % Attaining Regents Diploma (6 year)'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'High School Persistence Rate'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - 6-Year High School Persistence Rate'</span>, <span class="st">'Metric Value - 4-Year High School Persistence Rate'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - 6-Year Graduation Rate - All Students'</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 4-Year Graduation Rate - All Students'</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - % Attaining Regents Diploma (4 year)'</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - % Attaining Regents Diploma (6 year)'</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 4-Year High School Persistence Rate'</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 6-Year High School Persistence Rate'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Average rates that are 4 and 6 years then drop</p>
+<div id="cell-36" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Graduation Rate'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - 6-Year Graduation Rate - All Students'</span>, <span class="st">'Metric Value - 4-Year Graduation Rate - All Students'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'% Attaining Regents Diploma'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - % Attaining Regents Diploma (4 year)'</span>, <span class="st">'Metric Value - % Attaining Regents Diploma (6 year)'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'High School Persistence Rate'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - 6-Year High School Persistence Rate'</span>, <span class="st">'Metric Value - 4-Year High School Persistence Rate'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - 6-Year Graduation Rate - All Students'</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 4-Year Graduation Rate - All Students'</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - % Attaining Regents Diploma (4 year)'</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - % Attaining Regents Diploma (6 year)'</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 4-Year High School Persistence Rate'</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Metric Value - 6-Year High School Persistence Rate'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-22" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine student demographic percentages - group black and hispanic since its the majority</span></span>
+<p>Combine student demographic percentages - group black and hispanic since its the majority. Combine teacher demographic percentages - 2 groups: Teacher White and Teacher Other. Remove nearby student percentages. Remove Borough Percentages.</p>
+<div id="cell-38" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#student demographic </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Student Percent - Black and Hispanic'</span>] <span class="op">=</span> (df[<span class="st">'Student Percent - Black'</span>] <span class="op">+</span> df[<span class="st">'Student Percent - Hispanic'</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Student Percent - Other'</span>] <span class="op">=</span> df[<span class="st">'Student Percent - Native American'</span>] <span class="op">+</span> df[<span class="st">'Student Percent - Native Hawaiian or Pacific Islander'</span>] <span class="op">+</span> df[<span class="st">'Student Percent - Asian'</span>] <span class="op">+</span> df[<span class="st">'Student Percent - White'</span>]</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Student Percent - White'</span>,<span class="st">'Student Percent - Native American'</span>, <span class="st">'Student Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Student Percent - Asian'</span>, <span class="st">'Student Percent - Black'</span>, <span class="st">'Student Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine teacher demographic percentages - 2 groups: Teacher White and Teacher Other</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#teacher demographic </span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Teacher - Other'</span>] <span class="op">=</span> df[<span class="st">'Teacher Percent - Native American'</span>] <span class="op">+</span> df[<span class="st">'Teacher Percent - Native Hawaiian or Pacific Islander'</span>] <span class="op">+</span> df[<span class="st">'Teacher Percent - Asian'</span>] <span class="op">+</span> df[<span class="st">'Teacher Percent - Hispanic'</span>] <span class="op">+</span> df[<span class="st">'Teacher Percent - Black'</span>]</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Teacher Percent - Native American'</span>, <span class="st">'Teacher Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Teacher Percent - Asian'</span>, <span class="st">'Teacher Percent - Black'</span>, <span class="st">'Teacher Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove nearby student percentages</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#df['Nearby Student Percent - Black and Hispanic'] = (df['Nearby Student Percent - Black'] + df['Nearby Student Percent - Hispanic'])</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#df['Nearby Student Percent - Other'] = df['Nearby Student Percent - Native American'] + df['Nearby Student Percent - Native Hawaiian or Pacific Islander'] + df['Nearby Student Percent - Asian'] + df['Nearby Student Percent - White']</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Nearby Student Percent - White'</span>,<span class="st">'Nearby Student Percent - Native American'</span>, <span class="st">'Nearby Student Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Nearby Student Percent - Asian'</span>, <span class="st">'Nearby Student Percent - Black'</span>, <span class="st">'Nearby Student Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Remove Borough Percentages</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#df['Borough Percent - Black and Hispanic'] = (df['Borough Percent - Black'] + df['Borough Percent - Hispanic'])</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#df['Borough Percent - Other'] = df['Borough Percent - Native American'] + df['Borough Percent - Native Hawaiian or Pacific Islander'] + df['Borough Percent - Asian'] + df['Borough Percent - White']</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Borough Percent - White'</span>,<span class="st">'Borough Percent - Native American'</span>, <span class="st">'Borough Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Borough Percent - Asian'</span>, <span class="st">'Borough Percent - Black'</span>, <span class="st">'Borough Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#nearby student percentages</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Nearby Student Percent - White'</span>,<span class="st">'Nearby Student Percent - Native American'</span>, <span class="st">'Nearby Student Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Nearby Student Percent - Asian'</span>, <span class="st">'Nearby Student Percent - Black'</span>, <span class="st">'Nearby Student Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Borough Percentages</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Borough Percent - White'</span>,<span class="st">'Borough Percent - Native American'</span>, <span class="st">'Borough Percent - Native Hawaiian or Pacific Islander'</span>,<span class="st">'Borough Percent - Asian'</span>, <span class="st">'Borough Percent - Black'</span>, <span class="st">'Borough Percent - Hispanic'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#only keep general postsecondary enrollment and graduation columns</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>((df.columns.<span class="bu">str</span>.contains(<span class="st">"postsecondary enrollment"</span>, case<span class="op">=</span><span class="va">False</span>)) <span class="op">&amp;</span> <span class="op">~</span>(df.columns <span class="op">==</span> <span class="st">"Metric Value - Postsecondary Enrollment Rate"</span>))]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'graduated|graduation'</span>, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>) <span class="op">&amp;</span> <span class="op">~</span>(df.columns <span class="op">==</span> <span class="st">"Graduation Rate"</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Only keep general postsecondary enrollment and graduation columns</p>
+<div id="cell-40" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>((df.columns.<span class="bu">str</span>.contains(<span class="st">"postsecondary enrollment"</span>, case<span class="op">=</span><span class="va">False</span>)) <span class="op">&amp;</span> <span class="op">~</span>(df.columns <span class="op">==</span> <span class="st">"Metric Value - Postsecondary Enrollment Rate"</span>))]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'graduated|graduation'</span>, regex<span class="op">=</span><span class="va">True</span>, case<span class="op">=</span><span class="va">False</span>) <span class="op">&amp;</span> <span class="op">~</span>(df.columns <span class="op">==</span> <span class="st">"Graduation Rate"</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-24" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#extract District and Borough from DBN column - DBN: (##(District)X(Borough)</span><span class="al">###</span><span class="co">(School ID))</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.copy()</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'District'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">2</span>]</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">2</span>:<span class="dv">3</span>]</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#map borough name to value</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>borough_map <span class="op">=</span> {<span class="st">'M'</span>: <span class="st">'Manhattan'</span>, <span class="st">'K'</span>: <span class="st">'Brooklyn'</span>, <span class="st">'X'</span>: <span class="st">'Bronx'</span>, <span class="st">'Q'</span>:<span class="st">'Queens'</span>, <span class="st">'R'</span>:<span class="st">'Staten Island'</span>}</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'Borough'</span>].<span class="bu">map</span>(borough_map) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Extract District and Borough from DBN column and map borough name to value</p>
+<p>DBN: (##(District)X(Borough)###(School ID))</p>
+<div id="cell-42" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.copy()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'District'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'DBN'</span>].<span class="bu">str</span>[<span class="dv">2</span>:<span class="dv">3</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>borough_map <span class="op">=</span> {<span class="st">'M'</span>: <span class="st">'Manhattan'</span>, <span class="st">'K'</span>: <span class="st">'Brooklyn'</span>, <span class="st">'X'</span>: <span class="st">'Bronx'</span>, <span class="st">'Q'</span>:<span class="st">'Queens'</span>, <span class="st">'R'</span>:<span class="st">'Staten Island'</span>}</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Borough'</span>] <span class="op">=</span> df[<span class="st">'Borough'</span>].<span class="bu">map</span>(borough_map) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-25" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combine ACT metrics</span></span>
+<p>Combine ACT metrics and SAT metrics, drop repetitive regents metrics</p>
+<div id="cell-44" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ACT </span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Percent who took ACT'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f cohort who took the ACT English exam'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f cohort who took the ACT Reading exam'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Percent with 20+ ACT'</span>] <span class="op">=</span> df[[<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the ACT English exam who scored 20+'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the ACT Math exam who scored 21+'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop([<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f cohort who took the ACT English exam'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f cohort who took the ACT Reading exam'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the ACT English exam who scored 20+'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the ACT Math exam who scored 21+'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SAT metrics</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SAT </span></span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Percent College Ready based on SAT Math'</span>] <span class="op">=</span> df[<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the SAT Math exam who passed the college ready threshold'</span>]</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the SAT Math exam who passed the college ready threshold'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students in the current cohort who took the SAT Reading and Writing exam and scored 480+'</span>], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span> )</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Regents metrics - drop repetitive metrics</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Regents</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students who took the English Regents exam and are college ready (scored 70+)'</span>,<span class="st">'Metric Value - </span><span class="sc">% o</span><span class="st">f students who took the English Regents exam in the current year who scored 65+'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-26" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combine 8th grade proficiency metrics</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Average Grade 8 Proficiency'</span>] <span class="op">=</span> df[[<span class="st">'Average Grade 8 English Proficiency'</span>, <span class="st">'Average Grade 8 Math Proficiency'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df.drop(columns <span class="op">=</span>[<span class="st">'Average Grade 8 English Proficiency'</span>,<span class="st">'Average Grade 8 Math Proficiency'</span>],inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#drop lowest third citywide metrics since it is based on average grade 8 proficiency  </span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'Lowest Third'</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Combine 8th grade proficiency metrics and drop lowest third citywide metrics since it is based on average grade 8 proficiency</p>
+<div id="cell-46" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Average Grade 8 Proficiency'</span>] <span class="op">=</span> df[[<span class="st">'Average Grade 8 English Proficiency'</span>, <span class="st">'Average Grade 8 Math Proficiency'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df.drop(columns <span class="op">=</span>[<span class="st">'Average Grade 8 English Proficiency'</span>,<span class="st">'Average Grade 8 Math Proficiency'</span>],inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, <span class="op">~</span>(df.columns.<span class="bu">str</span>.contains(<span class="st">'Lowest Third'</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop students recommended for Individualized Education Programs (IEPs)</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">'Percentage of students recommended for general ed settings with Special Ed Teacher Support Services (SETSS)'</span>,<span class="st">'Percentage of students recommended for Integrated Co-Teaching (ICT) services'</span>,<span class="st">'Percentage of students recommended for Special Class (SC) services'</span>], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Drop students recommended for Individualized Education Programs (IEPs)</p>
+<div id="cell-48" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">'Percentage of students recommended for general ed settings with Special Ed Teacher Support Services (SETSS)'</span>,<span class="st">'Percentage of students recommended for Integrated Co-Teaching (ICT) services'</span>,<span class="st">'Percentage of students recommended for Special Class (SC) services'</span>], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-28" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop columns that give same info as targets: graduation rate and chronic absenteeism</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'High School Persistence Rate'</span>,<span class="st">'% Attaining Regents Diploma'</span>,<span class="st">'Metric Value - Percentage of Students with 90%+ Attendance'</span>,<span class="st">'Average Student Attendance'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Drop columns that give same info as targets: graduation rate and chronic absenteeism</p>
+<div id="cell-50" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.drop(columns<span class="op">=</span>[<span class="st">'High School Persistence Rate'</span>,<span class="st">'% Attaining Regents Diploma'</span>,<span class="st">'Metric Value - Percentage of Students with 90%+ Attendance'</span>,<span class="st">'Average Student Attendance'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-29" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop columns that are captured in the College and Career Preparatory Course Index (CCPCI)</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#info taken from School Quality Reports Educator Guide</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - % Scoring 3+ on any AP Exam'</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Passing a NYCPS-certified CPCC Course'</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Passing an Industry-Recognized Technical Assessment'</span>,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Scoring 4+ on any IB Exam'</span>,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Metric Value - </span><span class="sc">% E</span><span class="st">arning a Grade of 'C' or Higher for College Credit"</span>,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Scoring 65+ on Alg2, Chem, or Phys Regents Exam'</span>,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - </span><span class="sc">% E</span><span class="st">arning a Diploma with an Arts Endorsement'</span>,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - </span><span class="sc">% E</span><span class="st">arning a Diploma with a CTE Endorsement'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Drop columns that are captured in the College and Career Preparatory Course Index (CCPCI)<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>.</p>
+<div id="cell-52" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - % Scoring 3+ on any AP Exam'</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Passing a NYCPS-certified CPCC Course'</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Passing an Industry-Recognized Technical Assessment'</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Scoring 4+ on any IB Exam'</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Metric Value - </span><span class="sc">% E</span><span class="st">arning a Grade of 'C' or Higher for College Credit"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - % Scoring 65+ on Alg2, Chem, or Phys Regents Exam'</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - </span><span class="sc">% E</span><span class="st">arning a Diploma with an Arts Endorsement'</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Metric Value - </span><span class="sc">% E</span><span class="st">arning a Diploma with a CTE Endorsement'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-30" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make course columns with low occurence into binary rather than percentages - more interperable</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'CLEP_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in a College Level Examination Program (CLEP)'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IB_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in an IB Course'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'NYCPS_college_prep_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in an NYCPS-certified College Preparatory Course'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Took_ACT'</span>] <span class="op">=</span> (df[<span class="st">'Percent who took ACT'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
+<p>Make course columns with low occurence into binary rather than percentages - more interperable. Drop the originals</p>
+<div id="cell-54" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'CLEP_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in a College Level Examination Program (CLEP)'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IB_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in an IB Course'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'NYCPS_college_prep_enrolled'</span>] <span class="op">=</span> (df[<span class="st">'Percentage of Students Enrolled in an NYCPS-certified College Preparatory Course'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Took_ACT'</span>] <span class="op">=</span> (df[<span class="st">'Percent who took ACT'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#info taken from School Quality Reports Educator Guide</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Percentage of Students Enrolled in a College Level Examination Program (CLEP)'</span>,</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percentage of Students Enrolled in an IB Course'</span>,</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percentage of Students Enrolled in an NYCPS-certified College Preparatory Course'</span>,</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percent who took ACT'</span>, <span class="st">'Percent with 20+ ACT'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Percentage of Students Enrolled in a College Level Examination Program (CLEP)'</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percentage of Students Enrolled in an IB Course'</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percentage of Students Enrolled in an NYCPS-certified College Preparatory Course'</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'Percent who took ACT'</span>, <span class="st">'Percent with 20+ ACT'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="handle-data-types" class="level3">
-<h3 class="anchored" data-anchor-id="handle-data-types">Handle Data Types</h3>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<p>Before processing, the data types summary shows: | float64 | 346 | | object | 317 |</p>
-<p>After processing and removing rows, the summary shows: | float64 | 64 | | object | 4 |</p>
-<p>The remaining object columns are ‘DBN’, ‘School Name’, ‘District’, and ‘Borough’. We will keep these for EDA purposes.</p>
-<p>I used sklearn’s ordinal encoder to encode the categorical values of quality review columns. The value provided were : ‘Developing’ ‘Well Developed’, ‘Proficient’. I encoded them in this order and handled unkown values as -1.</p>
-<p>Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.</p>
-<div id="cell-33" class="cell" data-execution_count="80">
+<p><strong>Handle Data Types</strong>: Converting all columns to numeric is essential for EDA to create plots and for modeling as regression will only take numeric values.</p>
+<div id="cell-56" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert rate % to float</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Student Survey Response Rate'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Student Survey Response Rate'</span>].<span class="bu">str</span>[:<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Teacher Survey Response Rate'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Teacher Survey Response Rate'</span>].<span class="bu">str</span>[:<span class="op">-</span><span class="dv">1</span>])</span>
@@ -773,18 +645,14 @@ Name: count, dtype: int64</code></pre>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#convert all metric value columns to numeric</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>df.loc[:, df.columns.<span class="bu">str</span>.contains(<span class="st">'Metric Value'</span>)] <span class="op">=</span> df.loc[:, df.columns.<span class="bu">str</span>.contains(<span class="st">'Metric Value'</span>)].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">'coerce'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="handle-missingness" class="level3">
-<h3 class="anchored" data-anchor-id="handle-missingness">Handle Missingness</h3>
-<p><strong>Managing Missing Data</strong>: According to the Educator Guide, “metrics with fewer than the minimum number of students are not reported and do not contribute to the school’s ratings because of confidentiality considerations and the unreliability of measurements based on small numbers”<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. These are shown in the data as values of ‘N&lt;15’ and ‘N&lt;5’. We cannot impute 0 for these values since that would fasely discredit the school. Instead, I changed these values to NA and did not include them when processing.</p>
-<p>Further, to handle large amounts of missing data, I removed columns where greater than 50% of the data is missing. This helped to reduce size of the dataframe by removing 100+ columns which would not have been helpful to our analysis since it was missing too much. I then imputed data that was missing less than 10% of the data. I imputed based on the skew of the distribution, if the skew was greater than the absolute value of 0.5, I used median to impute, and if the skew appeared to be a normal position, I used the mean to impute. I then removed the remaining three columns with missingness that did not meet the threshold to obtain a complete dataset.</p>
-<div id="cell-36" class="cell" data-execution_count="81">
+<p><strong>Handle Missingness:</strong> To address the large amounts of missing data, I first removed columns where more than 50% of the data was missing. This step significantly reduced the size of the dataframe by eliminating over 100 columns that wouldn’t have contributed meaningfully to the analysis due to the high volume of missing values. Next, I focused on imputing data for columns with less than 10% missing values. For imputation, I used the skew of the distribution to determine the best method. If the skew was greater than an absolute value of 0.5, I imputed using the median, as this is more robust to outliers. If the distribution appeared to be approximately normal, I used the mean for imputation. Finally, I removed the remaining three columns with missing data that did not meet the threshold, ensuring a complete and clean dataset for analysis.</p>
+<div id="cell-58" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>71</code></pre>
 </div>
 </div>
-<div id="cell-37" class="cell" data-execution_count="82">
+<div id="cell-59" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> handle_missingness(df, threshold<span class="op">=</span><span class="fl">0.1</span>):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Function for imputing data using skew when missingness &lt; 10% and removing columns with missingness &gt; 50% """</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.columns:</span>
@@ -802,12 +670,12 @@ Name: count, dtype: int64</code></pre>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>            df.drop([col], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-38" class="cell" data-execution_count="83">
+<div id="cell-60" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> handle_missingness(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-39" class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check null count of each column</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check null count of each column</p>
+<div id="cell-62" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>Metric Value - Average score of students in the current cohort who took the SAT Reading and Writing exam    76
 Metric Value - Average score of students in the current cohort who took the SAT Math exam                   76
@@ -832,34 +700,33 @@ Years of principal experience at this school                                    
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-40" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#drop remaining columns with missingness</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - Average score of students in the current cohort who took the SAT Reading and Writing exam'</span>,<span class="st">'Metric Value - Average score of students in the current cohort who took the SAT Math exam'</span>,<span class="st">'Student Achievement - Section Score'</span>,<span class="st">'Metric Value - Average Completion Rate for Remaining Regents'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Drop remaining columns with missingness</p>
+<div id="cell-64" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'Metric Value - Average score of students in the current cohort who took the SAT Reading and Writing exam'</span>,<span class="st">'Metric Value - Average score of students in the current cohort who took the SAT Math exam'</span>,<span class="st">'Student Achievement - Section Score'</span>,<span class="st">'Metric Value - Average Completion Rate for Remaining Regents'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-41" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Post cleaning data check</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Post cleaning data check</p>
+<div id="cell-66" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df.dtypes.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>float64    51
 object      4
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-42" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check remaining objects - keep these for EDA</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df.select_dtypes(include<span class="op">=</span>[<span class="st">'object'</span>]).columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The remaining object columns are ‘DBN’, ‘School Name’, ‘District’, and ‘Borough’. We will keep these for EDA purposes.</p>
+<div id="cell-68" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df.select_dtypes(include<span class="op">=</span>[<span class="st">'object'</span>]).columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <pre><code>Index(['DBN', 'School Name', 'District', 'Borough'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="cell-43" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save processed df to csv</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'../../data/processed-data/processed_df.csv'</span>, index<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Save processed df to csv</p>
+<div id="cell-70" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'../../data/processed-data/processed_df.csv'</span>, index<span class="op">=</span><span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-44" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># post cleaning df.head check</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Post cleaning df.head check</p>
+<div id="cell-72" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="89">
 <div>
 
@@ -1019,12 +886,12 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-45" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># post cleaning missingness check</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values After Cleaning"</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Post cleaning missingness check</p>
+<div id="cell-74" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df.isnull(), cbar<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">"viridis"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Missing Values After Cleaning"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1036,11 +903,10 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>I chose to work with this particular subset of the data becasue it retains the the information of the columns I am interested in exploring. I chose to drop columns that were too granular such as specific Regents subjects. In addition, some metric columns contained the same info as the ‘Metric Value’ columns that I kept, so I was able to get rid of N count, metric rating, metric score, comparison group, and positive response columns.</p>
+<p>I chose to work with this specific subset of the data because it retains the key columns I am most interested in exploring. I decided to drop columns that were too granular, such as specific course types and certain demographic data, which were not directly relevant to my analysis. Additionally, some metric columns contained redundant information already captured by the ‘Metric Value’ columns I kept. As a result, I removed the N count, metric rating, metric score, comparison group, and positive response columns. After this filtering process, the dataset is now streamlined, containing 55 columns and 501 rows, ensuring a more focused and manageable analysis.</p>
 
 
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
