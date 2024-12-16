@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -189,26 +209,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  <li><a href="#start-collecting-data" id="toc-start-collecting-data" class="nav-link" data-scroll-target="#start-collecting-data">Start collecting data:</a></li>
-  <li><a href="#saving-the-raw-data" id="toc-saving-the-raw-data" class="nav-link" data-scroll-target="#saving-the-raw-data">Saving the raw data</a></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements:</a></li>
+  <li><a href="#goals" id="toc-goals" class="nav-link" data-scroll-target="#goals">Goals</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
   </ul></li>
-  <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">Overview</a>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a></li>
   <li><a href="#american-community-survey-api" id="toc-american-community-survey-api" class="nav-link" data-scroll-target="#american-community-survey-api">American Community Survey API</a></li>
   <li><a href="#nyc-open-data-api" id="toc-nyc-open-data-api" class="nav-link" data-scroll-target="#nyc-open-data-api">NYC Open Data API</a></li>
-  <li><a href="#other-datasets-used" id="toc-other-datasets-used" class="nav-link" data-scroll-target="#other-datasets-used">Other Datasets used</a>
+  <li><a href="#other-datasets" id="toc-other-datasets" class="nav-link" data-scroll-target="#other-datasets">Other Datasets</a></li>
+  </ul></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a>
   <ul class="collapse">
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul></li>
   <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
   </ul></li>
@@ -237,119 +252,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instruction once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The goal of this section is to collect and consolidate data to build a comprehensive dataset that captures factors influencing negative high school outcomes in New York City. This includes data on high school offerings, quality metrics, and socioeconomic characteristics.</p>
+<section id="goals" class="level3">
+<h3 class="anchored" data-anchor-id="goals">Goals</h3>
 <ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-<p>In the provide repo, these subsections have been included in the <code>data-collection</code> file as separate <code>.qmd</code> files that can be embedded using the <code>{{&lt; include  &gt;}}</code> tag.</p>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>On this page, you will focus on <strong>data collection</strong>, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.</p>
-<p>It is recommended that you focus on one or two of the following data formats, <strong>text</strong>, <strong>tabular</strong>, <strong>image</strong>, <strong>geospatial</strong>, or <strong>network</strong> data.</p>
-<p><strong>Tabular</strong> (e.g.&nbsp;CSV files) and <strong>text</strong> formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid <strong>timeseries</strong> data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling.</p>
-</section>
-<section id="start-collecting-data" class="level2">
-<h2 class="anchored" data-anchor-id="start-collecting-data">Start collecting data:</h2>
-<p>Begin gathering your data and document the methods and sources on the <strong>Data Collection</strong> page of your project. Include screenshots or example tables to illustrate the data collection process without displaying entire datasets. Ensure <strong>transparency</strong> so anyone can replicate your work.</p>
-</section>
-<section id="saving-the-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="saving-the-raw-data">Saving the raw data</h2>
-<ul>
-<li>During the collection phase, save the collected data locally to the <code>data/raw-data</code> folder, in the root of the project, for later processing. (Do not sync this folder to GitHub.)</li>
-<li>Remember, the “raw data” should typically be left “pristine”, to ensure replicability.</li>
-<li>Later when you clean the data, you should save the cleaned data to the <code>data/processed-data</code> folder, in the root of the project.</li>
-<li>You should also save files you download manually from online to this folder</li>
+<li>Compile relevant data from multiple sources to understand key drivers behind poor high school outcomes.</li>
+<li>Create a unified dataset that combines academic quality indicators, attendance statistics, and socioeconomic factors for further analysis.</li>
 </ul>
 </section>
-<section id="requirements" class="level2">
-<h2 class="anchored" data-anchor-id="requirements">Requirements:</h2>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<p>High school outcomes, such as chronic absenteeism, dropping out, and low college persistence rates, can significantly impact students futures. By identifying the underlying factors driving these outcomes, this analysis seeks to provide actionable insights that could inform policies or interventions aimed at improving educational equity and student success in New York City high schools.</p>
+</section>
+<section id="objectives" class="level3">
+<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
 <ul>
-<li>Your data must be relevant to the project’s overall goals and help solve your research questions.</li>
-<li>You must use <strong>at least one API</strong> to collect your data.</li>
-<li>Ensure you have at least one <strong>regression target</strong>: a continuous quantity that can be used for regression prediction with other features.</li>
-<li>Ensure you have at least one <strong>binary classification target</strong>: a two-class (A,B) label that can be predicted using other features.</li>
-<li>Ensure you have at least one <strong>multiclass-classification target</strong>: a multi-class (A,B,C …) label that can be predicted using other features.</li>
-<li><strong>Do not use a Kaggle topic</strong>—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.</li>
+<li>Aggregate and map data from various sources, including high school quality reports and Census data, into one unified dataset.</li>
+<li>Ensure compatibility between datasets by creating shared columns through location metrics, for example ZIP code.</li>
+<li>Lay the groundwork for further analysis, enabling the exploration of correlations between school quality, socioeconomic factors, and student outcomes.</li>
 </ul>
-<p>Focus on data that tells a compelling story and supports the techniques covered in the class (e.g., clustering, classification, regression).</p>
 </section>
 </section>
-<section id="what-do-include-on-this-page" class="level1">
-<h1>What do include on this page</h1>
-<p>To ensure clarity and transparency throughout your project, your data collection documentation should include the following:</p>
-<ol start="0" type="1">
-<li><p><strong>Include all code used for data collection</strong> in the notebook below</p></li>
-<li><p><strong>Data Source Information</strong></p>
-<ul>
-<li>Specify where the data comes from, whether public datasets, APIs, or original collection.</li>
-<li>Provide links to datasets or API documentation and explain their relevance to the project.</li>
-</ul></li>
-<li><p><strong>Data Collection Methods</strong></p>
-<ul>
-<li>If you used an API or web scraping, explain the tools (e.g., <code>BeautifulSoup</code>, <code>Selenium</code>) and the process.</li>
-<li>Include links to your code for replicating data collection.</li>
-</ul></li>
-<li><p><strong>Data Structure and Format</strong></p>
-<ul>
-<li>Describe the structure of your raw data (e.g., rows, columns, data types) and its format (CSV, JSON, etc.).</li>
-</ul></li>
-<li><p><strong>Linking to Data</strong></p>
-<ul>
-<li>Include links to the <strong>raw dataset</strong>, ensuring transparency and allowing replication.</li>
-</ul></li>
-<li><p><strong>Code and Reproducibility</strong></p>
-<ul>
-<li>Link to all relevant code, including data collection , with clear documentation to enable replication.</li>
-</ul></li>
-<li><p><strong>Transparency and Replicability</strong></p>
-<ul>
-<li>Ensure your entire workflow is transparent and reproducible by linking all data, code, and documentation. This allows others to follow your process from start to finish.</li>
-</ul></li>
-</ol>
-</section>
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>In this section, provide a high-level overview for technical staff, summarizing the key tasks and processes carried out here. Include the following elements:</p>
-<ul>
-<li><strong>Goals</strong>: Clearly define the purpose of the tasks or analysis being conducted.</li>
-<li><strong>Motivation</strong>: Explain the reasoning behind the work, such as solving a specific problem, improving a system, or optimizing performance.</li>
-<li><strong>Objectives</strong>: Outline the specific outcomes you aim to achieve, whether it’s implementing a solution, analyzing data, or building a model.</li>
-</ul>
-<p>This overview should give technical staff a clear understanding of the context and importance of the work, while guiding them on what to focus on in the details that follow.</p>
-</section>
-<section id="methods" class="level1">
-<h1>Methods</h1>
-<p>In this section, provide an overview summary of the methods used on this page. This should include a brief description of the key techniques, algorithms, tools, or processes employed in your work. Make sure to outline the approach taken for data collection, processing, analysis, or any specific technical steps relevant to the project.</p>
-</section>
-<section id="overview-1" class="level1">
-<h1>Overview</h1>
-<p>In this section, provide a high-level overview for technical staff, summarizing the key tasks and processes carried out here. Include the following elements:</p>
-<ul>
-<li><strong>Goals</strong>: Clearly define the purpose of the tasks or analysis being conducted.</li>
-<li><strong>Motivation</strong>: Explain the reasoning behind the work, such as solving a specific problem, improving a system, or optimizing performance.</li>
-<li><strong>Objectives</strong>: Outline the specific outcomes you aim to achieve, whether it’s implementing a solution, analyzing data, or building a model.</li>
-</ul>
-<p>This overview should give technical staff a clear understanding of the context and importance of the work, while guiding them on what to focus on in the details that follow.</p>
-<section id="overview-2" class="level3">
-<h3 class="anchored" data-anchor-id="overview-2">Overview</h3>
-<p>The goal of this section is to collect enough data to create a comprehensive dataset that encapsulates all of the factors that I believe are a driver of negative high school outcomes in New York City. This includes data on high school offerings, qualities, and socioeconomic data.</p>
-</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="american-community-survey-api" class="level3">
 <h3 class="anchored" data-anchor-id="american-community-survey-api">American Community Survey API</h3>
-<p>In the following code, I first used the requests library to retrieve the Census data from the American Community Survey. The params include get and for, which specify the columns we want and to pull data at the zip code level, respectively. Chat GPT was used to brainstorm potentional relevant columns to pull from the 10,000+ columns that would satisfy the project objectives. I stored this in a pandas dataframe and renamed the columns to ensure readability. Finally, I exported this dataframe to a csv file to prepare for data cleaning.</p>
-<div id="cell-7" class="cell" data-execution_count="2">
+<p>In the following code, I first used the requests library to retrieve the Census data from the American Community Survey. The params include get and for, which specify the columns we want and to pull data at the zip code level, respectively. Chat GPT was used to brainstorm potentional relevant columns to pull from the 10,000+ columns that would satisfy the project objectives<span class="citation" data-cites="gpt4o_code_gen"><sup><a href="#ref-gpt4o_code_gen" role="doc-biblioref">1</a></sup></span>. I stored this in a pandas dataframe and renamed the columns to ensure readability. Finally, I exported this dataframe to a csv file to prepare for data cleaning.</p>
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -453,14 +384,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Export to csv</p>
-<div id="cell-9" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'../../data/raw-data/ACS_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="nyc-open-data-api" class="level3">
 <h3 class="anchored" data-anchor-id="nyc-open-data-api">NYC Open Data API</h3>
-<p>This data on graduation rate outcomes is taken from NYC Open Data. This file contains the dropout rates that we are interested in. This code is adapted from the API documentation (https://dev.socrata.com/foundry/data.cityofnewyork.us/3vje-du8p). We use the library Socrata from sodapy to retrieve the data. The package returns the JSON data to a Python list of dictionaries so we can easily convert to a pandas dataframe.</p>
-<div id="cell-11" class="cell" data-execution_count="4">
+<p>This data on graduation rate outcomes is taken from NYC Open Data. This file contains the dropout rates that we are interested in. This code is adapted from the API documentation<span class="citation" data-cites="noauthor_2005-2019_nodate"><sup><a href="#ref-noauthor_2005-2019_nodate" role="doc-biblioref">2</a></sup></span>. We use the library Socrata from sodapy to retrieve the data. The package returns the JSON data to a Python list of dictionaries so we can easily convert to a pandas dataframe.</p>
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sodapy <span class="im">import</span> Socrata</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># unauthenticated client works with public data sets</span></span>
@@ -475,34 +406,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Export to csv</p>
-<div id="cell-13" class="cell" data-execution_count="32">
+<div id="cell-10" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results_df.to_csv(<span class="st">'../../data/raw-data/dropout_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="other-datasets-used" class="level2">
-<h2 class="anchored" data-anchor-id="other-datasets-used">Other Datasets used</h2>
-<p>The get data on quality of each high school in New York City including some of my targets of interest inclduing chronic absenteeism and college persistence, I downloaded a dataset from NYC InfoHub.</p>
+<section id="other-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="other-datasets">Other Datasets</h3>
+<p>To gather data on the quality of each high school in New York City, including some of my targets of interest, such as chronic absenteeism and college persistence, I downloaded an xlsx dataset from NYC InfoHub.</p>
 <p><a href="'../../data/raw-data/202223-hs-sqr-results.xlsx'">Download the 2022-23 High School Quality Report</a></p>
-<p>In addition, in order to map the quality data to the Census data, I used an NYC High School Directory file found on the Infohub site. This provided us with zip codes that I could join the Census data on.</p>
+<p>Additionally, to map the quality data to Census data, I used an NYC High School Directory file available on the InfoHub site. This file provided ZIP codes, which enabled me to join the quality data with Census data.</p>
 <p><a href="'../../data/mapping/2021_DOE_High_School_Directory.csv'">Download the mapping file</a></p>
+</section>
+</section>
+<section id="takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>This section focuses on collecting and integrating data to build a comprehensive dataset that explores the factors influencing negative high school outcomes in New York City. Using data from NYC InfoHub and Census mapping, I was able to create a unified and actionable dataset that will providesinsights for improving educational equity and student success. This foundational work enables deeper analysis to inform strategies and interventions for better high school outcomes.</p>
 </section>
+<section id="challenges" class="level3">
+<h3 class="anchored" data-anchor-id="challenges">Challenges</h3>
+<p>One major challenge I faced was finding data that could be aggregated into my dataset. The NYC high school quality data is organized by school name and DBN, a unique New York identifier that combines the district, borough, and NYC DOE school number. However, many other datasets, such as nationwide ones that I was interested in, did not include these identifiers, as they are specific to New York. As a result, I had to spend considerable time finding data with compatible aggregations, which somewhat limited my options. Eventually, I was able to find a mapping of DBN to ZIP code, which allowed me to incorporate census data into my school data, adding a few socioeconomic factors.</p>
+<p>For future work, I would be interested in scaling this project to include all of New York State or even nationwide data. Currently, my analysis is limited to New York City high schools, resulting in a dataset of only about 500 rows, which is relatively small. Expanding to a larger dataset with more schools would likely enable the creation of more robust datasets and models.</p>
 </section>
-<section id="challenges" class="level2">
-<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
-<p>One major challenge faced was finding the data I needed that could be aggregaated to my dataset. The NYC high school quality data is aggregated by school name and DBN, which is a uniue new york identifier that uses the district, bourough, and nyc doe school number. However many other datasets, for example country wide ones, that I was interested in getting features from did not include these aggregations since it appears to be new york specific. Therefore I had to spend a lot of time and was a little limited to finding data with this aggregation. I was able to find a mapping of DBN to zip code, which allowed me to map the census data to my school data, incorporating a few socioeconomic factors.</p>
-<p>In future work, I would be interesting is scaling this project to all of New York, or even country wide. Since I am only looking at New York City high schools, I only have about 500 rows, which is a bit of a small dataset. If this can be scaled to a larger amount of schools, I would probably be able to create a more robust dataset and models.</p>
-</section>
-<section id="conclusion-and-future-steps" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h2>
-<p>However, we by aggreagating data from 3 different datasets, we are able to evaluate many features that may have impacts on our target varaibles and help us evaluate how high school qualities and socioeconomic factors effect high school outcomes in New York City.</p>
+<section id="conclusion-and-future-steps" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h3>
+<p>By aggregating data from three different datasets, we were able to create a comprehensive dataset to evaluate various features that may impact our target variables. This analysis helps us better understand how high school quality and socioeconomic factors influence high school outcomes in New York City. Next steps involve cleaning and exploring this data in order to prepare it for the modeling phase.</p>
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-gpt4o_code_gen" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">The following code cell was generate primarily via GPT-4o, OpenAI, chat.openai.com.</div>
+</div>
+<div id="ref-noauthor_2005-2019_nodate" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline"><a href="https://dev.socrata.com/foundry/data.cityofnewyork.us/3vje-du8p">2005-2019 <span>Graduation</span> <span>Rates</span> - <span>All</span> <span></span> <span>Socrata</span> <span>API</span> <span>Foundry</span></a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
