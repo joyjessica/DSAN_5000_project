@@ -585,7 +585,7 @@
     "href": "technical-details/eda/main.html",
     "title": "Exploratory Data Analysis",
     "section": "",
-    "text": "Exploratory Data Analysis (EDA) is a crucial beginning step in any data science project. On this page, we will examine distributions, analyze correlations, and uncover relationships between variables, ensuring the data is ready for the modeling phase. These insights will guide and shape our modeling approach. It is important to avoid modeling blindly and instead base our decisions on a thorough understanding of the data.\nCode\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport textwrap\nimport plotly.express as px\nimport scipy.stats as stats\nfrom scipy.stats import ttest_ind, skew, kurtosis, f_oneway\nCode\ndf = pd.read_csv('../../data/processed-data/processed_df.csv')"
+    "text": "Exploratory Data Analysis (EDA) is a crucial beginning step in any data science project. On this page, we will examine distributions, analyze correlations, and uncover relationships between variables, ensuring the data is ready for the modeling phase. These insights will guide and shape our modeling approach. It is important to avoid modeling blindly and instead base our decisions on a thorough understanding of the data.\nCode\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport textwrap\nimport plotly.express as px\nimport scipy.stats as stats\nfrom scipy.stats import ttest_ind, skew, kurtosis, f_oneway\nimport plotly.io as pio\npio.renderers.default = \"notebook\"\nCode\ndf = pd.read_csv('../../data/processed-data/processed_df.csv')"
   },
   {
     "objectID": "technical-details/eda/main.html#univariate-analysis",
