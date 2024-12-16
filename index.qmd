@@ -1,6 +1,6 @@
 ---
-title: "Landing page"
-bibliography: references.bib
+title: "Home"
+bibliography: assets/references.bib
 ---
 
 ![](images/dropouts.png){width=200 height=300}
