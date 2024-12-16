@@ -1,19 +1,17 @@
 ---
-title: "Home"
+title: "Breaking the Cycle: How School and Socioeconomics Shape Dropout and College Success"
 bibliography: assets/references.bib
 ---
 
-![](images/dropouts.png){width=500 height=300}
+![](images/dropouts.png){width=600 height=200}
 
-## Breaking the Cycle: How School and Socioeconomics Shape Dropout and College Success
-
-### Motivation:
+## Motivation:
 
 Dropping out of high school has often been linked to many long term negative outcomes. Research shows that students who drop out of high school are more likely to face unemployment, earn lower wages, engage in high-risk behaviors, become incarcerated, and impose significant costs on society [@lansford_public_2016]. In this research, I aim to explore the factors that potentially contribute to high school dropout rates, with the goal of identifying opportunities for early intervention to mitigate these negative outcomes. My focus will be on understanding how school quality and socioeconomic factors influence student outcomes, specifically chronic absenteeism (missing more than 10% of the school year), dropout rates, and college persistence (returning to college after the first year). 
 
 This research is intended to inform policymakers, researchers, and data enthusiasts interested in understanding the factors that contribute to chronic absenteeism, dropout rates, and college persistence. I hypothesize that these three outcomes are interconnected. For instance, high chronic absenteeism may correlate with higher dropout rates, and even if students avoid dropping out of high school, could there still be a risk of low college persistence? These are the key questions I aim to address through this research. 
 
-**Data Science Questions:**
+### Data Science Questions:
 
 1. What borough or district-level differences exist in student outcomes? - use ANOVA to assess statistical diff
 2. How does economic need affect access to college preparation?
@@ -30,4 +28,5 @@ This research is intended to inform policymakers, researchers, and data enthusia
 
 **Neighborhood Poverty and Public Policy: A 5-Year Follow-Up of Children’s Educational Outcomes in the New York City Moving to Opportunity Demonstration**: This research paper analyzes the long-term effects of the Moving to Opportunity (MTO) program, a randomized experiment that provided housing vouchers to low-income families in high-poverty neighborhoods to relocate to lower-poverty areas. The study focuses on a subset of New York City children followed for five years, comparing their educational outcomes with those of families who remained in high-poverty neighborhoods. The 5 year results revealed negative effects on grades and school engagement for both boys and girls in low-poverty neighborhoods. The study highlights the complexity of improving educational outcomes for low-income minority children, emphasizing the roles of family, neighborhood, housing, and school factors.  [@leventhal_neighborhood_2005]
 
+###  Next Steps
 This website offers data driven insights, visualizations, and machine learning models to dive into this topic. I invite you to explore the content!
