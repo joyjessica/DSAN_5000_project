@@ -11,7 +11,7 @@ LLM tools were used in the following way for the tasks below
 
 ## Writing: 
 
-* Proofreading
+* Proofreading all text
 * Text summarization for literature review 
 * Used to convert formulas written into Latex format for readibility
 * Think of a fun engaging title
@@ -20,3 +20,4 @@ LLM tools were used in the following way for the tasks below
 
 * Code commenting and explanatory documentation 
 * ChatGPT was used to aid in generating code to navigate the American Community Survey Census API
+* Run into some issues with agglomerative clustering, used Chat to debug
