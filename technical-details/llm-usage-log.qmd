@@ -11,11 +11,12 @@ LLM tools were used in the following way for the tasks below
 
 ## Writing: 
 
-* Reformating text from bulleted lists into proses 
 * Proofreading
 * Text summarization for literature review 
 * Used to convert formulas written into Latex format for readibility
+* Think of a fun engaging title
 
 ## Code: 
 
 * Code commenting and explanatory documentation 
+* Used to aid in API documentation

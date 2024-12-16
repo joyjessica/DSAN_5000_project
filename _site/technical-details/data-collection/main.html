@@ -199,16 +199,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#american-community-survey-api" id="toc-american-community-survey-api" class="nav-link" data-scroll-target="#american-community-survey-api">American Community Survey API</a></li>
+  <li><a href="#nyc-open-data-api" id="toc-nyc-open-data-api" class="nav-link" data-scroll-target="#nyc-open-data-api">NYC Open Data API</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
   <ul class="collapse">
   <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
+  </ul></li>
+  <li><a href="#start" id="toc-start" class="nav-link" data-scroll-target="#start">Start</a>
+  <ul class="collapse">
+  <li><a href="#challenges-1" id="toc-challenges-1" class="nav-link" data-scroll-target="#challenges-1">Challenges</a></li>
+  <li><a href="#conclusion-and-future-steps-1" id="toc-conclusion-and-future-steps-1" class="nav-link" data-scroll-target="#conclusion-and-future-steps-1">Conclusion and Future Steps</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -331,71 +336,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Methods</h1>
 <p>In this section, provide an overview summary of the methods used on this page. This should include a brief description of the key techniques, algorithms, tools, or processes employed in your work. Make sure to outline the approach taken for data collection, processing, analysis, or any specific technical steps relevant to the project.</p>
 <p>If you are developing a package, include a reference to the relevant documentation and provide a link here for easy access. Ensure that the package details are properly documented in its dedicated section, but mentioned and connected here for a complete understanding of the methods used in this project.</p>
-</section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>Ensure that the code is well-commented to enhance readability and understanding for others who may review or use it. If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>This page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<p>In the following code, we first utilized the requests library to retrieve the HTML content from the Wikipedia page. Afterward, we employed BeautifulSoup to parse the HTML and locate the specific table of interest by using the find function. Once the table was identified, we extracted the relevant data by iterating through its rows, gathering country names and their respective populations. Finally, we used Pandas to store the collected data in a DataFrame, allowing for easy analysis and visualization. The data could also be optionally saved as a CSV file for further use.</p>
-<div id="cell-6" class="cell" data-execution_count="1">
+<section id="american-community-survey-api" class="level3">
+<h3 class="anchored" data-anchor-id="american-community-survey-api">American Community Survey API</h3>
+<p>In the following code, I first used the requests library to retrieve the Census data from the American Community Survey. The params include get and for, which specify the columns we want and to pull data at the zip code level, respectively. Chat GPT was used to brainstorm potentional relevant columns to pull from the 10,000+ columns that would satisfy the project objectives. I stored this in a pandas dataframe and renamed the columns to ensure readability. Finally, I exported this dataframe to a csv file to prepare for data cleaning.</p>
+<div id="cell-5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Send a request to Wikipedia page</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Parse the page content using BeautifulSoup</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">'html.parser'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Find the table containing the data (usually the first table for such lists)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, {<span class="st">'class'</span>: <span class="st">'wikitable'</span>})</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># base url + specifiy params</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.census.gov/data/2022/acs/acs5/profile"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"get"</span>: <span class="st">"DP02_0060PE,DP02_0068PE,DP02_0114PE,DP02_0072PE,DP02_0094PE,DP02_0154PE,DP03_0062E,DP03_0074PE"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"for"</span>: <span class="st">"zip code tabulation area:*"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span>: <span class="st">"1c6835368d6cc1f7472ed2e8a39e07ee7e9d1cd6"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, params<span class="op">=</span>params)</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Extract data from the table rows</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> []</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> []</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over the table rows</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> table.find_all(<span class="st">'tr'</span>)[<span class="dv">1</span>:]:  <span class="co"># Skip the header row</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> row.find_all(<span class="st">'td'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> cells[<span class="dv">1</span>].text.strip()  <span class="co"># The country name is in the second column</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        population <span class="op">=</span> cells[<span class="dv">2</span>].text.strip()  <span class="co"># The population is in the third column</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        countries.append(country)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        populations.append(population)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create a DataFrame to store the results</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Country'</span>: countries,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population'</span>: populations</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scraped data</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally save to CSV</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'../../data/raw-data/countries_population.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># check the response</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> response.json()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data[<span class="dv">1</span>:], columns<span class="op">=</span>data[<span class="dv">0</span>])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    df.rename(columns<span class="op">=</span>{</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0060PE"</span>: <span class="st">"Percent No High School (25+)"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0068PE"</span>: <span class="st">"Percent Bachelor's Degree or Higher (25+)"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0114PE"</span>: <span class="st">"Percent Language Other Than English at Home"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0072PE"</span>: <span class="st">"Percent Population with Disabilities"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0094PE"</span>: <span class="st">"Percent Foreign-Born Population"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP02_0154PE"</span>: <span class="st">"Percent Households with Broadband Internet"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP03_0062E"</span>: <span class="st">"Median Household Income"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DP03_0074PE"</span>: <span class="st">"Percent Households on SNAP/Food Stamps"</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    }, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Error: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>response<span class="sc">.</span>text<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                 Country     Population
-0                                  World  8,119,000,000
-1                                  China  1,409,670,000
-2                          1,404,910,000          17.3%
-3                          United States    335,893,238
-4                              Indonesia    281,603,800
-..                                   ...            ...
-235                   Niue (New Zealand)          1,681
-236                Tokelau (New Zealand)          1,647
-237                         Vatican City            764
-238  Cocos (Keeling) Islands (Australia)            593
-239                Pitcairn Islands (UK)             35
+<pre><code>      Percent No High School (25+) Percent Bachelor's Degree or Higher (25+)  \
+0                             None                                      None   
+1                             None                                      None   
+2                             None                                      None   
+3                             None                                      None   
+4                             None                                      None   
+...                            ...                                       ...   
+33769                          0.0                                      64.0   
+33770                          3.0                                      17.0   
+33771                          0.9                                       9.2   
+33772                          0.0                                       0.0   
+33773                          1.7                                      18.0   
 
-[240 rows x 2 columns]</code></pre>
+      Percent Language Other Than English at Home  \
+0                                            None   
+1                                            None   
+2                                            None   
+3                                            None   
+4                                            None   
+...                                           ...   
+33769                                         0.0   
+33770                                         5.2   
+33771                                         4.9   
+33772                                       100.0   
+33773                                         4.6   
+
+      Percent Population with Disabilities Percent Foreign-Born Population  \
+0                                     None                            None   
+1                                     None                            None   
+2                                     None                            None   
+3                                     None                            None   
+4                                     None                            None   
+...                                    ...                             ...   
+33769                                 36.0                             0.0   
+33770                                 21.0                             3.2   
+33771                                 24.7                             2.6   
+33772                                100.0                           100.0   
+33773                                 23.1                             3.8   
+
+      Percent Households with Broadband Internet Median Household Income  \
+0                                           None                   17526   
+1                                           None                   20260   
+2                                           None                   17703   
+3                                           None                   19603   
+4                                           None                   22796   
+...                                          ...                     ...   
+33769                                       64.0              -666666666   
+33770                                       64.7                   80313   
+33771                                       75.4                   78365   
+33772                                      100.0              -666666666   
+33773                                       81.1                   61125   
+
+      Percent Households on SNAP/Food Stamps zip code tabulation area  
+0                                       57.9                    00601  
+1                                       57.0                    00602  
+2                                       53.3                    00603  
+3                                       58.5                    00606  
+4                                       55.4                    00610  
+...                                      ...                      ...  
+33769                                    0.0                    99923  
+33770                                    9.4                    99925  
+33771                                   28.0                    99926  
+33772                                    0.0                    99927  
+33773                                   13.4                    99929  
+
+[33774 rows x 9 columns]</code></pre>
 </div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#export to csv</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'../../data/raw-data/ACS_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nyc-open-data-api" class="level3">
+<h3 class="anchored" data-anchor-id="nyc-open-data-api">NYC Open Data API</h3>
+<p>This data on graduation rate outcomes is taken from NYC Open Data. This code is adapted from the API documentation (https://dev.socrata.com/foundry/data.cityofnewyork.us/3vje-du8p). We use the library Socrata from sodapy to retrieve the data. The pakcage returns the JSON data to a Python list of dictionaries so we can easily convert to a pandas dataframe.</p>
+<div id="cell-8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sodapy <span class="im">import</span> Socrata</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unauthenticated client works with public data sets</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Socrata(<span class="st">"data.cityofnewyork.us"</span>, <span class="va">None</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> client.get(<span class="st">"mjm3-8dw8"</span>, limit<span class="op">=</span><span class="dv">321002</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to pandas df</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame.from_records(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:root:Requests made without an app_token will be subject to strict throttling limits.</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#export to csv</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>results_df.to_csv(<span class="st">'../../data/raw-data/dropout_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -423,6 +494,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Suggest potential improvements or refinements to this part of the project.</li>
 <li>Based on the results, provide actionable recommendations for further research or optimization efforts.</li>
 </ul>
+</section>
+</section>
+<section id="start" class="level1">
+<h1>Start</h1>
+<section id="challenges-1" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-1">Challenges</h2>
+<p>One major challenge faced was finding the data I needed that could be aggregaated to my dataset. The NYC high school quality data is aggregated by school name and DBN, which is a uniue new york identifier that uses the district, bourough, and nyc doe school number. However many other datasets, for example country wide ones, that I was interested in getting features from did not include these aggregations since it appears to be new york specific. Therefore I had to spend a lot of time and was a little limited to finding data with this aggregation. I was able to find a mapping of DBN to zip code, which allowed me to map the census data to my school data, incorporating a few socioeconomic factors.</p>
+<p>In future work, I would be interesting is scaling this project to all of New York, or even country wide. Since I am only looking at New York City high schools, I only have about 500 rows, which is a bit of a small dataset. If this can be scaled to a larger amount of schools, I would probably be able to create a more robust dataset and models.</p>
+</section>
+<section id="conclusion-and-future-steps-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-future-steps-1">Conclusion and Future Steps</h2>
+<p>However, we by aggreagating data from 3 different datasets, we are able to evaluate many features that may have impacts on our target varaibles and help us evaluate how high school qualities and socioeconomic factors effect high school outcomes in New York City.</p>
 
 
 </section>

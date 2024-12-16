@@ -1,83 +1,33 @@
 ---
 title: "Landing page"
+bibliography: references.bib
 ---
 
-**Audio instructions:**
+![](images/dropouts.png){width=200 height=300}
 
-If you want, you can listen to the instructions:
+## "Breaking the Cycle: How School and Socioeconomics Shape Dropout and College Success"
 
-<audio controls><source src="audio/landing-page-instructions.mp3" type="audio/mpeg"></audio>
+### Motivation:
 
-<sup> **Source**: Text-to-speech conversion done with Amazon Polly on AWS </sup>
+Dropping out of high school has often been linked to many long term negative outcomes. Research shows that students who drop out of high school are more likely to face unemployment, earn lower wages, engage in high-risk behaviors, become incarcerated, and impose significant costs on society [@lansford_public_2016]. In this research, I aim to explore the factors that potentially contribute to high school dropout rates, with the goal of identifying opportunities for early intervention to mitigate these negative outcomes. My focus will be on understanding how school quality and socioeconomic factors influence student outcomes, specifically chronic absenteeism (missing more than 10% of the school year), dropout rates, and college persistence (returning to college after the first year). 
 
-`Note`: These audio instructions should not be included in your final submission or repository, once you are done wiht them, please delete the files and remove them from the website. 
+This research is intended to inform policymakers, researchers, and data enthusiasts interested in understanding the factors that contribute to chronic absenteeism, dropout rates, and college persistence. I hypothesize that these three outcomes are interconnected. For instance, high chronic absenteeism may correlate with higher dropout rates, and even if students avoid dropping out of high school, could there still be a risk of low college persistence? These are the key questions I aim to address through this research. 
 
-## Getting Started
+**Data Science Questions:**
 
-To begin the project, first read the instruction document ([click here](instructions/overview.qmd)). This document is also accessible from the navigation bar.
+1. What borough or district-level differences exist in student outcomes? - use ANOVA to assess statistical diff
+2. How does economic need affect access to college preparation?
+3. How do neighborhood-level metrics, like housing stability or crime rates, influence chronic absenteeism?
+4. Can we predict what schools have a likelihood of high drop out risk out based on school characteristics?
+5. What is the relationship between student diversity and advanced course enrollment?
 
-Once you’ve completed that, you can proceed with the instructions found throughout the website.
+### Relevant Current Research
 
-## What to Include on This Page
+**School building condition, school attendance, and academic achievement in New York City public schools: A mediation model:** This study, published in the Journal of Environmental Psychology in 2008, examined the relationship between school building condition and the academic achievement of students in elementary schools in Manhattan, New York City. The researchers found that school building condition was positively related to student achievement in mathematics and English Language Arts. They also found that attendance was a mediator of this relationship, suggesting that students in better-quality buildings are more likely to attend school, which in turn leads to better academic outcomes. [@duran-narucki_school_2008]
 
-This is the landing page for your project. Content from this page can be reused in sections of your final report.
+**A Public Health Perspective on School Dropout and Adult Outcomes: A Prospective Study of Risk and Protective Factors from Age 5 to 27**: This research paper investigates the long-term consequences of high school dropout, framing it as a significant public health issue. A study followed 585 individuals from age 5 to 27, analyzing the correlation between dropping out and various negative adult outcomes like unemployment, arrest, and poor health. The study found a strong link between dropout and negative outcomes. The researchers identified several risk and protective factors, such as low socioeconomic status at age 5 and peer rejection in elementary school, which intensified the negative consequences of dropping out. The findings highlight the importance of early intervention and suggest that addressing school dropout proactively could significantly improve individual lives and reduce societal costs.
+[@lansford_public_2016]
 
-### Create an "About You" Page  
+**Neighborhood Poverty and Public Policy: A 5-Year Follow-Up of Children’s Educational Outcomes in the New York City Moving to Opportunity Demonstration**: This research paper analyzes the long-term effects of the Moving to Opportunity (MTO) program, a randomized experiment that provided housing vouchers to low-income families in high-poverty neighborhoods to relocate to lower-poverty areas. The study focuses on a subset of New York City children followed for five years, comparing their educational outcomes with those of families who remained in high-poverty neighborhoods. The 5 year results revealed negative effects on grades and school engagement for both boys and girls in low-poverty neighborhoods. The study highlights the complexity of improving educational outcomes for low-income minority children, emphasizing the roles of family, neighborhood, housing, and school factors.  [@leventhal_neighborhood_2005]
 
-- Develop your "About You" page. You can reuse content from previous assignments.
-- You can include the content here or on a separate page.
-   - It’s recommended to create one "About You" page for all DSAN projects, with links to your various class projects.
-
-### Create a Landing Page for Your Project  
-
-- Summarize your topic, its significance, related work, and the questions you plan to explore.
-- Draft an introduction with at least **5 research questions**. These may evolve as your project progresses, since data science is an iterative process.
-- Include your data science questions on this page.
-
-### Literature review
-
-Once you decide on a topic, you should `ALWAYS START WITH A LITERATURE REVIEW`, this is particularly important for academic projects.
-
-The literature review is the most important part of most projects. 
-
-It allows you to; 
-
-* 1. Determine what is already known and what has already been tried, so that you `don't re-invent the wheel`.
-* 2. It makes you more of a subject matter expert, allowing you to `ask the right questions`, `target impactful projects`, and `communicate with other professionals`.
-
-> Doing a project that you think will change the world, only to find at the end that a very similar version of your project was already done in the 1980's, isn't a great use of time.
-
-In this section, please do a literature review and cite at least **3 academic publications** per group member, and include **internal academic citations**.
-
-**Optional**: Consider using LLM tools to 10X your literature review, e.g. instead of focusing on 3 papers, aim for 30 or more
-
-By following these steps, you can 10X the efficiency of your literature review process, gaining more insights while minimizing the time spent on manual reading.
-
-1. **Expand Your Literature Search**  
-   Aim to gather a larger pool of papers. Use academic databases (Google Scholar, arXiv, etc.) to find relevant studies and ensure a broad scope.
-
-2. **Skim the Abstracts**  
-   Read the abstracts of each paper to quickly understand their focus and identify those most relevant to your topic. Prioritize these papers for deeper analysis.
-
-3. **Use LLM Tools for Summarization**  
-   Upload the selected papers to an LLM tool capable of text summarization. Have it condense the main points of each paper into a concise, manageable summary (e.g., condense hundreds of pages into a 10-page summary). Carefully review this summary to absorb the key insights.
-
-4. **Leverage Interactive LLM Tools**  
-   Use tools like NotebookLM or other AI-based text digesters to ask specific, targeted questions about the papers:
-   - Example questions:
-     - "In the papers uploaded, did any of them explore XYZ?"
-     - "Which paper is most closely related to the following project idea: [explain idea]?"
-   These tools will help you quickly extract relevant information without re-reading entire papers.
-
-
-## Additional Ideas for things to include 
-
-- **Audience**: Who is this for? Data professionals, businesses, researchers, or curious readers.
-- **Headline**: A captivating title introducing the data science theme (e.g., "Unlocking Insights Through Data Stories").
-- **Introduction**: A brief, engaging overview of what the website offers (e.g., data-driven stories, insights, or case studies).
-- **Questions You Are Addressing**: What do you hope to learn?
-- **Motivation**: Explain why this topic matters, highlighting the importance of data in solving real-world problems.
-- **Key Topics**: List the main focus areas (e.g., machine learning, data visualization, predictive modeling).
-- **Use Cases/Examples**: A brief teaser of compelling stories or case studies you’ve worked on.
-- **Call to Action**: Invite visitors to explore the content, follow along, or contact you for more information.
-- **Visual/Infographic**: Add a simple graphic or visual element to make the page more dynamic.
+This website offers data driven insights, visualizations, and machine learning models to dive into this topic. I invite you to explore the content!

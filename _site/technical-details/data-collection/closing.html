@@ -161,6 +161,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
   </ul></li>
+  <li><a href="#start" id="toc-start" class="nav-link" data-scroll-target="#start">Start</a>
+  <ul class="collapse">
+  <li><a href="#challenges-1" id="toc-challenges-1" class="nav-link" data-scroll-target="#challenges-1">Challenges</a></li>
+  <li><a href="#conclusion-and-future-steps-1" id="toc-conclusion-and-future-steps-1" class="nav-link" data-scroll-target="#conclusion-and-future-steps-1">Conclusion and Future Steps</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -194,6 +199,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Suggest potential improvements or refinements to this part of the project.</li>
 <li>Based on the results, provide actionable recommendations for further research or optimization efforts.</li>
 </ul>
+</section>
+</section>
+<section id="start" class="level1">
+<h1>Start</h1>
+<section id="challenges-1" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-1">Challenges</h2>
+<p>One major challenge faced was finding the data I needed that could be aggregaated to my dataset. The NYC high school quality data is aggregated by school name and DBN, which is a uniue new york identifier that uses the district, bourough, and nyc doe school number. However many other datasets, for example country wide ones, that I was interested in getting features from did not include these aggregations since it appears to be new york specific. Therefore I had to spend a lot of time and was a little limited to finding data with this aggregation. I was able to find a mapping of DBN to zip code, which allowed me to map the census data to my school data, incorporating a few socioeconomic factors.</p>
+<p>In future work, I would be interesting is scaling this project to all of New York, or even country wide. Since I am only looking at New York City high schools, I only have about 500 rows, which is a bit of a small dataset. If this can be scaled to a larger amount of schools, I would probably be able to create a more robust dataset and models.</p>
+</section>
+<section id="conclusion-and-future-steps-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-future-steps-1">Conclusion and Future Steps</h2>
+<p>However, we by aggreagating data from 3 different datasets, we are able to evaluate many features that may have impacts on our target varaibles and help us evaluate how high school qualities and socioeconomic factors effect high school outcomes in New York City.</p>
 
 
 </section>

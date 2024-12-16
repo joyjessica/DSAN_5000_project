@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,6 +101,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -159,8 +196,15 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
   <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
+  <li><a href="#univariate-analysis" id="toc-univariate-analysis" class="nav-link" data-scroll-target="#univariate-analysis">Univariate Analysis</a>
+  <ul class="collapse">
+  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations">Transformations</a></li>
+  <li><a href="#multivariate-analysis" id="toc-multivariate-analysis" class="nav-link" data-scroll-target="#multivariate-analysis">Multivariate Analysis</a></li>
   </ul></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#statistical-testing" id="toc-statistical-testing" class="nav-link" data-scroll-target="#statistical-testing">Statistical Testing</a></li>
+  <li><a href="#additional-visualizations" id="toc-additional-visualizations" class="nav-link" data-scroll-target="#additional-visualizations">Additional Visualizations</a></li>
+  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection">Feature Selection</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -271,16 +315,925 @@ ul.task-list li input[type="checkbox"] {
 <li>Discuss how your EDA informs the next steps in your project (e.g., feature selection, data transformations).</li>
 <li>Outline any further data cleaning or preparation required before moving into modeling.</li>
 </ul>
+<p>EDA is an important beginning step in any data science project. On this page we will look at distribtions, correlations, and uncover relationships between variables and ensure that data is ready for modeling. These insights will influence our modeling process. It is important that we dont model blindly.</p>
+<div id="cell-3" class="cell" data-execution_count="191">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> textwrap</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind, skew, kurtosis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../../data/processed-data/processed_df.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-</section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<section id="univariate-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="univariate-analysis">Univariate Analysis</h2>
+<p>Summary Statistics</p>
+<div id="cell-7" class="cell" data-execution_count="193">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.describe().T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="193">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Enrollment</td>
+<td>501.0</td>
+<td>568.892216</td>
+<td>683.763617</td>
+<td>11.0000</td>
+<td>287.000</td>
+<td>388.000000</td>
+<td>497.0000</td>
+<td>5942.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Female</td>
+<td>501.0</td>
+<td>0.488070</td>
+<td>0.143794</td>
+<td>0.0000</td>
+<td>0.430</td>
+<td>0.486000</td>
+<td>0.5400</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent Male</td>
+<td>501.0</td>
+<td>0.511669</td>
+<td>0.143896</td>
+<td>0.0000</td>
+<td>0.460</td>
+<td>0.514000</td>
+<td>0.5700</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Neither Female nor Male</td>
+<td>501.0</td>
+<td>0.000257</td>
+<td>0.000948</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.000000</td>
+<td>0.0000</td>
+<td>0.009</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent English Language Learners</td>
+<td>501.0</td>
+<td>0.132874</td>
+<td>0.184345</td>
+<td>0.0000</td>
+<td>0.039</td>
+<td>0.082000</td>
+<td>0.1430</td>
+<td>0.994</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Students with IEPs</td>
+<td>501.0</td>
+<td>0.209673</td>
+<td>0.080834</td>
+<td>0.0000</td>
+<td>0.165</td>
+<td>0.208000</td>
+<td>0.2630</td>
+<td>0.629</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Economic Need Index</td>
+<td>501.0</td>
+<td>0.730691</td>
+<td>0.237780</td>
+<td>0.0000</td>
+<td>0.690</td>
+<td>0.813000</td>
+<td>0.8810</td>
+<td>0.949</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Overage / Undercredited</td>
+<td>501.0</td>
+<td>0.054353</td>
+<td>0.054019</td>
+<td>0.0000</td>
+<td>0.018</td>
+<td>0.041000</td>
+<td>0.0690</td>
+<td>0.308</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent in Temp Housing</td>
+<td>501.0</td>
+<td>0.130513</td>
+<td>0.079141</td>
+<td>0.0060</td>
+<td>0.081</td>
+<td>0.119000</td>
+<td>0.1650</td>
+<td>0.560</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent HRA Eligible</td>
+<td>501.0</td>
+<td>0.700184</td>
+<td>0.153327</td>
+<td>0.0000</td>
+<td>0.642</td>
+<td>0.737000</td>
+<td>0.8120</td>
+<td>0.947</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Teacher Percent - White</td>
+<td>501.0</td>
+<td>0.430554</td>
+<td>0.161836</td>
+<td>0.0000</td>
+<td>0.320</td>
+<td>0.430554</td>
+<td>0.5350</td>
+<td>0.855</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Nearby Student Distance (mi)</td>
+<td>501.0</td>
+<td>2.317565</td>
+<td>1.778227</td>
+<td>0.4000</td>
+<td>1.100</td>
+<td>1.700000</td>
+<td>2.9000</td>
+<td>9.500</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percentage of Students Enrolled in an AP Course</td>
+<td>501.0</td>
+<td>0.291362</td>
+<td>0.200515</td>
+<td>0.0000</td>
+<td>0.171</td>
+<td>0.255500</td>
+<td>0.3840</td>
+<td>0.991</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percentage of Students Enrolled in an Advanced Math or Science Course</td>
+<td>501.0</td>
+<td>0.379705</td>
+<td>0.144616</td>
+<td>0.0000</td>
+<td>0.282</td>
+<td>0.379705</td>
+<td>0.4840</td>
+<td>0.800</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percentage of Students Enrolled in a College Credited Course</td>
+<td>501.0</td>
+<td>0.081681</td>
+<td>0.137217</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.021000</td>
+<td>0.1150</td>
+<td>0.923</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percentage of Students Enrolled in Any Advanced Course</td>
+<td>501.0</td>
+<td>0.571937</td>
+<td>0.175886</td>
+<td>0.0100</td>
+<td>0.456</td>
+<td>0.571937</td>
+<td>0.6800</td>
+<td>0.998</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Years of principal experience at this school</td>
+<td>501.0</td>
+<td>6.889421</td>
+<td>5.110596</td>
+<td>0.0000</td>
+<td>2.200</td>
+<td>6.100000</td>
+<td>10.2000</td>
+<td>22.100</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent of teachers with 3 or more years of experience</td>
+<td>501.0</td>
+<td>0.795406</td>
+<td>0.133245</td>
+<td>0.0800</td>
+<td>0.737</td>
+<td>0.821500</td>
+<td>0.8820</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent of Students Chronically Absent</td>
+<td>501.0</td>
+<td>0.417344</td>
+<td>0.161082</td>
+<td>0.0000</td>
+<td>0.299</td>
+<td>0.417344</td>
+<td>0.5320</td>
+<td>0.998</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Teacher Attendance Rate</td>
+<td>501.0</td>
+<td>0.952104</td>
+<td>0.027447</td>
+<td>0.6500</td>
+<td>0.950</td>
+<td>0.957000</td>
+<td>0.9630</td>
+<td>0.991</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Metric Value - Average Regents Score - English</td>
+<td>501.0</td>
+<td>69.576398</td>
+<td>9.322389</td>
+<td>29.1000</td>
+<td>63.900</td>
+<td>69.576398</td>
+<td>75.0000</td>
+<td>95.600</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Metric Value - College and Career Preparatory Course Index</td>
+<td>501.0</td>
+<td>0.656958</td>
+<td>0.239731</td>
+<td>0.0070</td>
+<td>0.487</td>
+<td>0.667000</td>
+<td>0.8750</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Metric Value - College Persistence</td>
+<td>501.0</td>
+<td>0.485317</td>
+<td>0.186830</td>
+<td>0.0230</td>
+<td>0.349</td>
+<td>0.481000</td>
+<td>0.6100</td>
+<td>0.978</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Rigorous Instruction - Element Score</td>
+<td>501.0</td>
+<td>3.473640</td>
+<td>0.651435</td>
+<td>1.8000</td>
+<td>3.030</td>
+<td>3.473640</td>
+<td>3.8900</td>
+<td>4.970</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Collaborative Teachers - Element Score</td>
+<td>501.0</td>
+<td>3.612056</td>
+<td>0.583369</td>
+<td>1.5200</td>
+<td>3.270</td>
+<td>3.612056</td>
+<td>3.9800</td>
+<td>4.930</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Supportive Environment - Element Score</td>
+<td>501.0</td>
+<td>3.577099</td>
+<td>0.417602</td>
+<td>2.0200</td>
+<td>3.320</td>
+<td>3.577099</td>
+<td>3.8600</td>
+<td>4.650</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Effective School Leadership - Element Score</td>
+<td>501.0</td>
+<td>3.552355</td>
+<td>0.570646</td>
+<td>1.2800</td>
+<td>3.270</td>
+<td>3.560000</td>
+<td>3.8900</td>
+<td>4.860</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Strong Family-Community Ties - Element Score</td>
+<td>501.0</td>
+<td>3.442936</td>
+<td>0.612733</td>
+<td>1.3800</td>
+<td>3.100</td>
+<td>3.442936</td>
+<td>3.8400</td>
+<td>4.830</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Trust - Element Score</td>
+<td>501.0</td>
+<td>3.392435</td>
+<td>0.600361</td>
+<td>1.1100</td>
+<td>3.050</td>
+<td>3.450000</td>
+<td>3.7900</td>
+<td>4.930</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Student Survey Response Rate</td>
+<td>501.0</td>
+<td>66.850299</td>
+<td>22.891561</td>
+<td>0.0000</td>
+<td>58.000</td>
+<td>71.000000</td>
+<td>83.0000</td>
+<td>100.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Teacher Survey Response Rate</td>
+<td>501.0</td>
+<td>80.932136</td>
+<td>17.471674</td>
+<td>18.0000</td>
+<td>72.000</td>
+<td>84.000000</td>
+<td>95.0000</td>
+<td>100.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Parent Survey Response Rate</td>
+<td>501.0</td>
+<td>34.069860</td>
+<td>23.083958</td>
+<td>0.0000</td>
+<td>16.000</td>
+<td>29.000000</td>
+<td>48.0000</td>
+<td>96.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">zip code</td>
+<td>501.0</td>
+<td>10715.345309</td>
+<td>535.154739</td>
+<td>10002.0000</td>
+<td>10302.000</td>
+<td>10468.000000</td>
+<td>11217.0000</td>
+<td>11694.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent No High School (25+)</td>
+<td>501.0</td>
+<td>9.221000</td>
+<td>5.305701</td>
+<td>0.0000</td>
+<td>5.200</td>
+<td>8.400000</td>
+<td>13.0000</td>
+<td>25.900</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent Bachelor's Degree or Higher (25+)</td>
+<td>501.0</td>
+<td>39.461876</td>
+<td>22.259906</td>
+<td>11.6000</td>
+<td>21.600</td>
+<td>33.900000</td>
+<td>51.8000</td>
+<td>94.500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Language Other Than English at Home</td>
+<td>501.0</td>
+<td>46.561000</td>
+<td>18.548678</td>
+<td>14.0000</td>
+<td>31.100</td>
+<td>50.000000</td>
+<td>60.2000</td>
+<td>86.300</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent Population with Disabilities</td>
+<td>501.0</td>
+<td>12.208800</td>
+<td>4.074472</td>
+<td>1.6000</td>
+<td>9.000</td>
+<td>11.700000</td>
+<td>15.1000</td>
+<td>21.300</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Percent Foreign-Born Population</td>
+<td>501.0</td>
+<td>33.935329</td>
+<td>11.466693</td>
+<td>13.7000</td>
+<td>25.400</td>
+<td>31.600000</td>
+<td>40.3000</td>
+<td>70.900</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent Households with Broadband Internet</td>
+<td>501.0</td>
+<td>86.407600</td>
+<td>5.493089</td>
+<td>71.1000</td>
+<td>82.400</td>
+<td>87.500000</td>
+<td>89.6000</td>
+<td>99.400</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Median Household Income</td>
+<td>501.0</td>
+<td>78499.157685</td>
+<td>41488.175277</td>
+<td>26400.0000</td>
+<td>43985.000</td>
+<td>67489.000000</td>
+<td>100190.0000</td>
+<td>250001.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent Households on SNAP/Food Stamps</td>
+<td>501.0</td>
+<td>23.808200</td>
+<td>14.262966</td>
+<td>0.0000</td>
+<td>11.700</td>
+<td>21.600000</td>
+<td>34.0000</td>
+<td>52.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">dropout_rate</td>
+<td>501.0</td>
+<td>5.358034</td>
+<td>5.261403</td>
+<td>0.0000</td>
+<td>1.225</td>
+<td>3.700000</td>
+<td>7.7000</td>
+<td>27.650</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Graduation Rate</td>
+<td>501.0</td>
+<td>0.899607</td>
+<td>0.072814</td>
+<td>0.5795</td>
+<td>0.853</td>
+<td>0.908750</td>
+<td>0.9595</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Student Percent - Black and Hispanic</td>
+<td>501.0</td>
+<td>0.799110</td>
+<td>0.213992</td>
+<td>0.0450</td>
+<td>0.729</td>
+<td>0.891000</td>
+<td>0.9490</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Student Percent - Other</td>
+<td>501.0</td>
+<td>0.183108</td>
+<td>0.206603</td>
+<td>0.0000</td>
+<td>0.041</td>
+<td>0.094000</td>
+<td>0.2520</td>
+<td>0.947</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">District</td>
+<td>501.0</td>
+<td>25.339321</td>
+<td>27.018524</td>
+<td>1.0000</td>
+<td>8.000</td>
+<td>16.000000</td>
+<td>28.0000</td>
+<td>84.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Percent College Ready based on SAT Math</td>
+<td>501.0</td>
+<td>0.152992</td>
+<td>0.213768</td>
+<td>0.0000</td>
+<td>0.023</td>
+<td>0.075000</td>
+<td>0.1900</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Average Grade 8 Proficiency</td>
+<td>501.0</td>
+<td>2.753443</td>
+<td>0.436318</td>
+<td>1.7550</td>
+<td>2.475</td>
+<td>2.680000</td>
+<td>2.9550</td>
+<td>4.270</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">CLEP_enrolled</td>
+<td>501.0</td>
+<td>0.017964</td>
+<td>0.132954</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.000000</td>
+<td>0.0000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">IB_enrolled</td>
+<td>501.0</td>
+<td>0.039920</td>
+<td>0.195967</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.000000</td>
+<td>0.0000</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NYCPS_college_prep_enrolled</td>
+<td>501.0</td>
+<td>0.083832</td>
+<td>0.277413</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.000000</td>
+<td>0.0000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Took_ACT</td>
+<td>501.0</td>
+<td>0.223553</td>
+<td>0.417042</td>
+<td>0.0000</td>
+<td>0.000</td>
+<td>0.000000</td>
+<td>0.0000</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="transformations" class="level3">
+<h3 class="anchored" data-anchor-id="transformations">Transformations</h3>
+<p>View distribution of numerical features with histogram</p>
+<div id="cell-10" class="cell" data-execution_count="194">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>numerical_columns <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'float64'</span>]).columns</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> df[numerical_columns].hist(figsize<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">30</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># wrap the titles for readability</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, col <span class="kw">in</span> <span class="bu">zip</span>(axes.flatten(), numerical_columns):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    wrapped_title <span class="op">=</span> textwrap.fill(col, width<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ax.set_title(wrapped_title)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Based on these distributions, we may want to transform some variables before modeling. Lets check the actual skews:</p>
+<div id="cell-12" class="cell" data-execution_count="195">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>skewness <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> col: skew(col) <span class="cf">if</span> col.dtype <span class="op">!=</span> <span class="st">'object'</span> <span class="cf">else</span> <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="196">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>skewness.loc[<span class="bu">abs</span>(skewness) <span class="op">&gt;</span> <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="196">
+<pre><code>Enrollment                                                      3.738744
+Percent Neither Female nor Male                                 5.155183
+Percent English Language Learners                               3.151075
+Percent Overage / Undercredited                                 2.173497
+Percentage of Students Enrolled in a College Credited Course    2.898833
+Teacher Attendance Rate                                        -5.282616
+Percent College Ready based on SAT Math                         2.235895
+CLEP_enrolled                                                   7.258441
+IB_enrolled                                                     4.700168
+NYCPS_college_prep_enrolled                                     3.003344
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_transformed <span class="op">=</span> df.copy()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#log variables exhibiting the power law</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_ELL'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Percent English Language Learners'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_dropout_rate'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'dropout_rate'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_temp_housing'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Percent in Temp Housing'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_percent_overage'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Percent Overage / Undercredited'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_enrollment'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Enrollment'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_nearby_student_distance'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Nearby Student Distance (mi)'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_college_ready_SAT_math'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Percent College Ready based on SAT Math'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_student_percent_other'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Student Percent - Other'</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>df_transformed[<span class="st">'log_household_income'</span>] <span class="op">=</span> np.log(df_transformed[<span class="st">'Median Household Income'</span>] <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numerical_columns <span class="op">=</span> df_transformed.select_dtypes(include<span class="op">=</span>[<span class="st">'float64'</span>]).columns</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> df_transformed[numerical_columns].hist(figsize<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">30</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># wrap the titles for readability</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, col <span class="kw">in</span> <span class="bu">zip</span>(axes.flatten(), numerical_columns):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    wrapped_title <span class="op">=</span> textwrap.fill(col, width<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ax.set_title(wrapped_title)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="multivariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-analysis">Multivariate Analysis</h3>
+<p>Visualize correlations with heatmap of all numeric columns</p>
+<div id="cell-18" class="cell" data-execution_count="197">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numeric_columns <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">'float64'</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> numeric_columns.corr()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,  cmap<span class="op">=</span><span class="st">'vlag'</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, center<span class="op">=</span><span class="dv">0</span>, square<span class="op">=</span><span class="va">True</span>, linewidths<span class="op">=</span><span class="fl">.5</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.5</span>})</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-19" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>numerical_columns <span class="op">=</span> numerical_columns.drop([<span class="st">'School Name'</span>,<span class="st">'DBN'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="statistical-testing" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-testing">Statistical Testing</h2>
+<p>Lets try to uncover relationships between some of our target variables and features in the data</p>
+<section id="t-test" class="level4">
+<h4 class="anchored" data-anchor-id="t-test">T-test</h4>
+<p>We will use a t test to evaluate if there is difference in the means of two groups</p>
+<div id="cell-22" class="cell" data-execution_count="198">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>high_dropout <span class="op">=</span> df[df[<span class="st">'dropout_rate'</span>] <span class="op">&gt;</span> <span class="fl">7.7</span>][<span class="st">'Median Household Income'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>low_dropout <span class="op">=</span> df[df[<span class="st">'dropout_rate'</span>] <span class="op">&lt;=</span> <span class="fl">7.7</span>][<span class="st">'Median Household Income'</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> ttest_ind(high_dropout, low_dropout)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f't-value = </span><span class="sc">{</span>t_stat<span class="sc">:.2f}</span><span class="ss">, p-value = </span><span class="sc">{</span>p_value<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>t-value = -2.79, p-value = 0.006</code></pre>
+</div>
+</div>
+<p>Null Hypothesis: There is no difference in mean median household income between schools with high dropout and low dropout rates.</p>
+<p>Alternative Hypothesis: There is a difference in mean median household income between schools with high and low droppout rates</p>
+<p>The p-value is 0.006, allowing us to reject the null hypothesis and conclude that there is significant difference in the mean median household income of schools with high dropout rates vs low dropout rates.</p>
+<div id="cell-24" class="cell" data-execution_count="216">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>high_chronic_absent <span class="op">=</span> df[df[<span class="st">'Percent of Students Chronically Absent'</span>] <span class="op">&gt;</span> <span class="fl">.4</span>][<span class="st">'Supportive Environment - Element Score'</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>low_chronic_absent <span class="op">=</span> df[df[<span class="st">'Percent of Students Chronically Absent'</span>] <span class="op">&lt;=</span> <span class="fl">.4</span>][<span class="st">'Supportive Environment - Element Score'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> ttest_ind(high_chronic_absent, low_chronic_absent)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f't-value = </span><span class="sc">{</span>t_stat<span class="sc">:.2f}</span><span class="ss">, p-value = </span><span class="sc">{</span>p_value<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>t-value = -11.44, p-value = 0.000</code></pre>
+</div>
+</div>
+<p>Null Hypothesis: There is no difference in mean supportive environment score between schools with high chronic absenteeism and low chronic absenteeism.</p>
+<p>Alternative Hypothesis: There is a difference in mean supportive environment score between schools with high chronic absenteeism and low chronic absenteeism.</p>
+<p>The p-value is less than 0.05, allowing us to reject the null hypothesis and conclude that there is significant difference in the mean supportive environment element score of schools with high chronic absenteeism vs low chronic absenteeism.</p>
+</section>
+<section id="anova" class="level4">
+<h4 class="anchored" data-anchor-id="anova">ANOVA</h4>
+<p>We will use an ANOVA test to evaluate if there is a difference in the means of more than two groups</p>
+<div id="cell-27" class="cell" data-execution_count="199">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'college_persistence_ranking'</span>] <span class="op">=</span> pd.cut(df[<span class="st">'Metric Value - College Persistence'</span>], bins<span class="op">=</span><span class="dv">3</span>, labels<span class="op">=</span>[<span class="st">'Low'</span>,<span class="st">'Medium'</span>,<span class="st">'High'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="200">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>anova_result <span class="op">=</span> f_oneway(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    df[df[<span class="st">'college_persistence_ranking'</span>]<span class="op">==</span><span class="st">'Low'</span>][<span class="st">'Economic Need Index'</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    df[df[<span class="st">'college_persistence_ranking'</span>]<span class="op">==</span><span class="st">'Medium'</span>][<span class="st">'Economic Need Index'</span>],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    df[df[<span class="st">'college_persistence_ranking'</span>]<span class="op">==</span><span class="st">'High'</span>][<span class="st">'Economic Need Index'</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'F value = </span><span class="sc">{</span>anova_result<span class="sc">.</span>statistic<span class="sc">:.2f}</span><span class="ss">, p-value = </span><span class="sc">{</span>anova_result<span class="sc">.</span>pvalue<span class="sc">:.3f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>F value = 21.57, p-value = 0.000</code></pre>
+</div>
+</div>
+<p>Null Hypothesis: There is no difference in mean economic need index between schools with high, medium, and low college persistence rates.</p>
+<p>Alternative Hypothesis: There is a difference in mean economic need index between schools with high, medium, and low college persistence rates.</p>
+<p>The p-value less than 0.05, allowing us to reject the null hypothesis and conclude that there is significant difference in the mean economic need index between at least one of the college persistence ranking groups (High, Medium, Low).</p>
+</section>
+</section>
+<section id="additional-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="additional-visualizations">Additional Visualizations</h2>
+<p>Taking a look at a box plot of dropout rates by borough, it is apparent that the Bronx has the highest rates of dropout. In addition, the median for Queens is low but there are some high outliers.</p>
+<div id="cell-32" class="cell" data-execution_count="201">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">'Borough'</span>, y<span class="op">=</span><span class="st">'dropout_rate'</span>, data<span class="op">=</span>df)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Dropout Rate by Borough'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Dropout Rate'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-33" class="cell" data-execution_count="202">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'District'</span>, y<span class="op">=</span><span class="st">'Percent of Students Chronically Absent'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Percent of Chronic Absenteeism by District'</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Certain districts clearly have higher medians and IQRs, especially some high spread and outliers in district 84</p>
+<div id="cell-35" class="cell" data-execution_count="203">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'Metric Value - College Persistence'</span>, y<span class="op">=</span><span class="st">'Average Grade 8 Proficiency'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'College Persistence vs Average Grade 8 Proficiency'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'College Persistence'</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Average Grade 8 Proficiency'</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It appears that high college persistence is associated with high average grade 8 proficiency. This emphasizes the importance of early intervention.</p>
+<p>Lets take a look at how all three of our target metrics work together in this interactive plot</p>
+<div id="cell-38" class="cell" data-execution_count="204">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">'Percent of Students Chronically Absent'</span>, y<span class="op">=</span><span class="st">'dropout_rate'</span>, color<span class="op">=</span><span class="st">'Metric Value - College Persistence'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig.update_layout(title<span class="op">=</span><span class="st">'Percent of Student Chronically Absent vs Dropout Rate'</span>, xaxis_title<span class="op">=</span><span class="st">'Percent of Students Chronically Absent'</span>, yaxis_title<span class="op">=</span><span class="st">'Dropout Rate'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+</div>
+</div>
+<p>It looks like high rates of college persistence are associated with low dropout rates and low percentages of student chronically absent - a motivating example of why we need to intervene to reduce these two metrics in order to maximize college persistence!</p>
+</section>
+<section id="feature-selection" class="level2">
+<h2 class="anchored" data-anchor-id="feature-selection">Feature Selection</h2>
+<p>For further analysis, we will do some feature selection to help us prepare for modeling</p>
+<p>Lets check what columns are most correlated with our regression target</p>
+<div id="cell-41" class="cell" data-execution_count="205">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>target_column <span class="op">=</span> <span class="st">'Percent of Students Chronically Absent'</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>correlations <span class="op">=</span> numeric_columns.corr()[target_column].sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>positive_correlations <span class="op">=</span> correlations[correlations <span class="op">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>negative_correlations <span class="op">=</span> correlations[correlations <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(positive_correlations.head(<span class="dv">10</span>).sort_values(ascending<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(negative_correlations.sort_values(ascending<span class="op">=</span><span class="va">True</span>).head(<span class="dv">10</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Percent of Students Chronically Absent    1.000000
+Percent HRA Eligible                      0.476284
+Student Percent - Black and Hispanic      0.434400
+Percent Students with IEPs                0.383127
+dropout_rate                              0.379707
+Percent in Temp Housing                   0.308445
+Percent Overage / Undercredited           0.308356
+Economic Need Index                       0.215888
+Percent English Language Learners         0.110565
+Teacher Survey Response Rate              0.102258
+Name: Percent of Students Chronically Absent, dtype: float64
+Average Grade 8 Proficiency                                  -0.558927
+Percent College Ready based on SAT Math                      -0.554737
+Metric Value - College Persistence                           -0.526158
+Supportive Environment - Element Score                       -0.507653
+Graduation Rate                                              -0.477225
+Student Percent - Other                                      -0.441859
+Metric Value - Average Regents Score - English               -0.422453
+Metric Value - College and Career Preparatory Course Index   -0.418735
+Took_ACT                                                     -0.347957
+Rigorous Instruction - Element Score                         -0.324224
+Name: Percent of Students Chronically Absent, dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-42" class="cell" data-execution_count="206">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> df[[ <span class="st">"Percent of Students Chronically Absent"</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent HRA Eligible"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Student Percent - Black and Hispanic"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent Students with IEPs"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"dropout_rate"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent in Temp Housing"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent Overage / Undercredited"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Economic Need Index"</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent English Language Learners"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Teacher Survey Response Rate"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Average Grade 8 Proficiency"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent College Ready based on SAT Math"</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Metric Value - College Persistence"</span>,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Supportive Environment - Element Score"</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Graduation Rate"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Metric Value - Average Regents Score - English"</span>,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Metric Value - College and Career Preparatory Course Index"</span>,</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Took_ACT"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can visualize these correlations using pairplot, we want to make sure there are no zero looking correlations, a big blob of dots with no apparent relationship</p>
+<div id="cell-44" class="cell" data-execution_count="207">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(features)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we should check the pairwise correlations to ensure that we dont have variables that are too correlated to each other</p>
+<div id="cell-46" class="cell" data-execution_count="208">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> features.corr()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>f, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))  </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr,  cmap<span class="op">=</span><span class="st">'vlag'</span>, annot<span class="op">=</span><span class="va">True</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, center<span class="op">=</span><span class="dv">0</span>, square<span class="op">=</span><span class="va">True</span>, linewidths<span class="op">=</span><span class="fl">.5</span>, cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.5</span>})</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There appears to be relationships with our target and all the features we have included, plus not too high correlations (nothing greater than |0.85|) between the features. Lets export this dataframe for our regression models.</p>
+<div id="cell-48" class="cell" data-execution_count="210">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>features.to_csv(<span class="st">'../../data/processed-data/df_subset_regression.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
