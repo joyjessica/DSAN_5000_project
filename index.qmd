@@ -3,9 +3,9 @@ title: "Home"
 bibliography: assets/references.bib
 ---
 
-![](images/dropouts.png){width=200 height=300}
+![](images/dropouts.png){width=500 height=300}
 
-## "Breaking the Cycle: How School and Socioeconomics Shape Dropout and College Success"
+## Breaking the Cycle: How School and Socioeconomics Shape Dropout and College Success
 
 ### Motivation:
 
