@@ -16,8 +16,6 @@ website:
         text: Home
       - href: aboutme.qmd
         text: About Me
-      - href: instructions/overview.qmd
-        text: Instructions
 
       - href: report/report.qmd
         text: Report

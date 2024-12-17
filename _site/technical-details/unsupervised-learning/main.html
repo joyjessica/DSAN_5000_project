@@ -154,10 +154,6 @@ div.csl-indent {
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -356,7 +352,7 @@ div.csl-indent {
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_pca <span class="op">=</span> pca.fit_transform(X_scaled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>Results:</strong> From the first plot, we can visualize the the optimal number of components, by understanding the cumulative variance explained by additional components. According to this graph, it looks like 3 components is the optimal amount. After 3, the additional variance we are explaining is diminishing. The first two components explain about 70% of the varaince. While distinct clusters are not evident from the first two principal components, we are able to observe that schools with higher dropout rates tend to be positioned towards the top of the plot, while schools with lower dropout rates are located towards the bottom. This suggests a relationship between the principal components and dropout rates, even if the clusters are not clearly defined. This may indicate that we need to use a non-linear algorithm to find better relationships in our data. Next, we can try t-SNE to see if more distinct relationships emerge.</p>
+<p><strong>Results:</strong> From the first plot, we can visualize the the optimal number of components, by understanding the cumulative variance explained by additional components. According to this graph, it looks like 3 components is the optimal amount. After 3, the additional variance we are explaining is diminishing. The first two components explain about 70% of the variance. While distinct clusters are not evident from the first two principal components, we are able to observe that schools with higher dropout rates tend to be positioned towards the top of the plot, while schools with lower dropout rates are located towards the bottom. This suggests a relationship between the principal components and dropout rates, even if the clusters are not clearly defined. This may indicate that we need to use a non-linear algorithm to find better relationships in our data. Next, we can try t-SNE to see if more distinct relationships emerge.</p>
 </section>
 <section id="t-sne" class="level3">
 <h3 class="anchored" data-anchor-id="t-sne">t-SNE</h3>

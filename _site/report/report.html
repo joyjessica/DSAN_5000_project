@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -97,10 +117,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../report/report.html" aria-current="page"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -162,6 +178,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data">Exploring the Data</a></li>
   <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
   <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a></li>
+  <li><a href="#binary-classification" id="toc-binary-classification" class="nav-link" data-scroll-target="#binary-classification">Binary Classification</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul></li>
   </ul>
@@ -216,35 +233,208 @@ ul.task-list li input[type="checkbox"] {
 <p>This dataset contains 500 New York City public high schools. We can begin by taking a look at dropout rates across New York City Boroughs, revealing areas of needed intervention.</p>
 <div class="grid">
 <div class="g-col-6">
-<p><img src="../images/graphs/boroughs.jpg" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/boroughs.jpg" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 1: Boroughs of New York City</figcaption>
+</figure>
+</div>
 </div>
 <div class="g-col-6">
-<p><img src="../images/graphs/graph6.png" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/dropout_borough.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 2: Boxplot of dropout rates by NYC Borough</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <p>It is evident that the highest median drop out rate is in the Bronx, followed by Brooklyn. Although there are some high outliers in Queens. This highlights boroughs where intervention is necessary. To take a closer look, we can look at drop out rates by specific NYC school districts.</p>
 <p align="center">
-<img src="../images/graphs/districts.png" width="600" height="300">
-</p>
+</p><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/districts.png" width="600" height="300" class="figure-img"></p>
+<figcaption>Figure 3: Boxplot of dropout rates by NYC DOE Districts</figcaption>
+</figure>
+</div>
+<p></p>
 <p>This plot clearly shows the highest drop out rate to be in district 12, which is located in the Bronx. Next is district 8 which is also located in the Bronx. This plot makes it easier to pinpoint school districts that need to be targeted.</p>
 <p>Next, we can take a look at specific socioeconomic and school features that we hypothesize will have an impact on our targets.</p>
 <div class="grid">
 <div class="g-col-6">
-<p><img src="../images/graphs/graph1.png" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/graph1.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 4: Scatter plot of median household income by dropout rate</figcaption>
+</figure>
+</div>
 </div>
 <div class="g-col-6">
-<p><img src="../images/graphs/graph2.png" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/graph2.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 5: Scatter plot of chronic absenteeism vs school environment</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <p>Using statistical testing, we were able to conclude that there is a statistically significant difference in mean median household income for high schools with high rates of drop out and high schools with low rates of dropout. This suggests that students from higher-income households, likely with parents with degrees and employment, and are less likely to drop out themselves. This emphasizes the importance of addressing economic disparities to improve these rates.</p>
 <p>Supportive Environment score comes from the NYC Quality report and is defined as, “reflects how well the school establishes a culture where students feel safe, challenged to grow, and supported to meet high expectations.” There is a statistically significant difference in the mean supportive environment score for a school with high and low rates of chronic absenteeism. This is important because it shows that when students feel good about the school environment, and feel a sense of value and community, theyre less likely to skip class or be absent.</p>
-<p><img src="../images/graphs/graph 3.png" style="width:100.0%"></p>
+<p align="center">
+</p><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/graph3.png" style="width:50.0%" class="figure-img"></p>
+<figcaption>Figure 6: Scatter plot of college persistence vs average grade 8 proficiency</figcaption>
+</figure>
+</div>
+<p></p>
+<p>Figure 6 highlights a strong relationship between college persistence and average grade 8 proficiency, emphasizing the critical need for early intervention. Students who perform well in 8th grade are more likely to succeed in college and persist through their studies. This highlights the importance of addressing academic gaps during middle school, before they affect long-term outcomes in order to set students up for success.</p>
 </section>
 <section id="unsupervised-learning" class="level3">
 <h3 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h3>
+<section id="dimensionality-reduction" class="level4">
+<h4 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality Reduction</h4>
+<div class="grid">
+<div class="g-col-6">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/pca.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 7: PCA results</figcaption>
+</figure>
+</div>
+</div>
+<div class="g-col-6">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/tsne.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 8: t-SNE results</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>PCA</strong> was applied to the socioeconomic factors, revealing a pattern in Figure 7 where schools with higher dropout rates are positioned towards the top of the plot, while those with lower dropout rates are found towards the bottom. This illustrates the significant impact of socioeconomic factors on dropout rates.</p>
+<p><strong>T-SNE</strong> was able to uncover certain patterns in the data and differentiate schools with varying levels of college persistence in Figure 8. While there is some overlap, we see the gradient become lighter as we move to the right. This emphasizes the model’s ability to distinguish schools based on their college persistence levels</p>
+</section>
+<section id="clustering" class="level4">
+<h4 class="anchored" data-anchor-id="clustering">Clustering</h4>
+<p align="center">
+</p><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/agglom.png" style="width:70.0%" class="figure-img"></p>
+<figcaption>Figure 8: Agglomerative clustering results</figcaption>
+</figure>
+</div>
+<p></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/cluster_box.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 9: Boxplot of agglomerative clusters vs targets</figcaption>
+</figure>
+</div>
+<p>Agglomerative Clustering worked best for this data, and was able to find patterns in the data. Looking at the boxplot in Figure 9, it is clear that Cluster 1 contains schools with the best student outcomes: low chronic absenteeism, low dropout rates, and high college persistence. This indicates that the algorithm successfully identified meaningful patterns in the data, emphasizing the role these features play in evaluating high school outcomes.</p>
+</section>
 </section>
 <section id="supervised-learning" class="level3">
 <h3 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h3>
+<section id="regression" class="level4">
+<h4 class="anchored" data-anchor-id="regression">Regression</h4>
+<p><strong>Target:</strong> Chronic Absenteeism</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/lasso.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 9: LASSO regression feature importance</figcaption>
+</figure>
+</div>
+<p>The LASSO regression gave the features most important to our target, chronic absenteeism. Supportive Environment score emerging as the most important variable in our model. This score reflects how well a school fosters a supportive, challenging environment for students<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. The next key feature was Average Grade 8 Proficiency. This metric emphasizes how important it is for children to be on the right track from a young age. The third important factor was Rigorous Instruction score, which measures how engaging and effective the curriculum is in promoting critial-thinking skills<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. Additionally, significant socioeconomic factors contributing to chronic absenteeism included Percent English Language Learners and Percent in Temporary Housing.</p>
+</section>
+</section>
+<section id="binary-classification" class="level3">
+<h3 class="anchored" data-anchor-id="binary-classification">Binary Classification</h3>
+<p><strong>Target:</strong> Classifying Schools with High vs.&nbsp;Low Dropout Risk</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Class 0</th>
+<th>Class 1</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Precision</strong></td>
+<td>0.97</td>
+<td>0.69</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Recall</strong></td>
+<td>0.89</td>
+<td>0.91</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>F1-Score</strong></td>
+<td>0.93</td>
+<td>0.78</td>
+<td>0.89</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the recall score, the gradient boosting model successfully identified high-risk dropout schools 91% of the time. These results suggest that the model can accurately predict schools at high risk of dropout, enabling targeted interventions to address key factors contributing to dropout risk.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/gb_binary.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 9: Gradient boosting classification feature importancegb</figcaption>
+</figure>
+</div>
+<p>The top 15 important features highlight several key factors, with college persistence ranking the highest. This suggests that schools struggling with dropout risk may also have issues with retaining students after their first year of college. Other significant features include the percentage of students in temporary housing and the percentage of overage/undercredited students (students with very few credits), which indicates a strong relationship between socioeconomic challenges and dropout rates.</p>
+<section id="multiclass-classification" class="level4">
+<h4 class="anchored" data-anchor-id="multiclass-classification">Multiclass Classification</h4>
+<p><strong>Target:</strong> Classifying Schools with High vs.&nbsp;Medium vs.&nbsp;Low College Persistence</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>High</th>
+<th>Low</th>
+<th>Medium</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Precision</strong></td>
+<td>0.60</td>
+<td>0.67</td>
+<td>0.92</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Recall</strong></td>
+<td>0.86</td>
+<td>0.91</td>
+<td>0.72</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>F1-Score</strong></td>
+<td>0.71</td>
+<td>0.77</td>
+<td>0.81</td>
+<td>0.78</td>
+</tr>
+</tbody>
+</table>
+<p>Examining the recall scores, this gradient boosting multiclass classification model successfully predicts 86% of schools with high college persistence, 72% of schools with medium college persistence, and 91% of schools with low college persistence. While there is room for improvement in predicting the medium category, the model’s ability to accurately identify schools with low college persistence is particularly significant, as this is where intervention is most needed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/graphs/gb_multi.png" style="width:100.0%" class="figure-img"></p>
+<figcaption>Figure 9: Gradient boosting classification feature importancegb</figcaption>
+</figure>
+</div>
+<p>Looking at the feature importance, similar to what we saw in the regression model for chronic absenteeism, Average Grade 8 Proficiency is the most important driver of college persistence. It is interesting that this metric continues to have predictive power at the college level. Additionally, both dropout rate and the percentage of chronically absent students are significant features in this model, highlighting the interconnectedness of these metrics within schools that must be addressed.</p>
+</section>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h3>
@@ -254,13 +444,18 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Economic Disadvantage</strong> plays a significant role in long-term outcomes such as college persistence, with students from lower-income backgrounds facing more barriers to succes</li>
 <li><strong>The Connection:</strong> Chronic absenteeism, dropout rates, and college persistence are closely linked. Addressing absenteeism early is key to preventing dropout and ensuring students stay on track for college success.</li>
 </ul>
-<p>By identifying and understanding the key drivers, such as supportive environment and socioeconomic factors, we can develop targeted strategies to support students more effectively. Empowering schools to create safe, supportive, and inclusive environments, while addressing broader economic challenges, is essential to ensure that every student has the opportunity to succeed academically and beyond.</p>
+<p>By identifying and understanding the key drivers, such as school environment and socioeconomic factors, we can develop targeted strategies to support students more effectively. Empowering schools to create safe, supportive, and inclusive environments, while addressing broader economic challenges, is essential to ensure that every student has the opportunity to succeed academically and beyond.</p>
+
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-NYCPublicSchoolsInfoHub_2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline"><a href="https://infohub.nyced.org/docs/default-source/default-document-library/2022-23-educator-guide-d75.pdf"><em>NYC Public Schools InfoHub</em> (2024)</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
