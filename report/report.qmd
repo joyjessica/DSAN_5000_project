@@ -88,19 +88,19 @@ Figure 6 highlights a strong relationship between college persistence and averag
 #### Clustering
 
 <p align="center">
-![Figure 8: Agglomerative clustering results](../images/graphs/agglom.png){width=70% height=auto}
+![Figure 9: Agglomerative clustering results](../images/graphs/agglom.png){width=70% height=auto}
 </p>
 
-![Figure 9: Boxplot of agglomerative clusters vs targets](../images/graphs/cluster_box.png){width=100% height=auto}
+![Figure 10: Boxplot of agglomerative clusters vs targets](../images/graphs/cluster_box.png){width=100% height=auto}
 
 Agglomerative Clustering worked best for this data, and was able to find patterns in the data. Looking at the boxplot in Figure 9, it is clear that Cluster 1 contains schools with the best student outcomes: low chronic absenteeism, low dropout rates, and high college persistence. This indicates that the algorithm successfully identified meaningful patterns in the data, emphasizing the role these features play in evaluating high school outcomes.
 
 ### Supervised Learning
 
-#### Regression
+### Regression
 **Target:** Chronic Absenteeism
 
-![Figure 9: LASSO regression feature importance](../images/graphs/lasso.png){width=100% height=auto}
+![Figure 11: LASSO regression feature importance](../images/graphs/lasso.png){width=100% height=auto}
 
 The LASSO regression gave the features most important to our target, chronic absenteeism. Supportive Environment score emerging as the most important variable in our model. This score reflects how well a school fosters a supportive, challenging environment for students [@NYCPublicSchoolsInfoHub_2024]. The next key feature was Average Grade 8 Proficiency. This metric emphasizes how important it is for children to be on the right track from a young age. The third important factor was Rigorous Instruction score, which measures how engaging and effective the curriculum is in promoting critial-thinking skills [@NYCPublicSchoolsInfoHub_2024]. Additionally, significant socioeconomic factors contributing to chronic absenteeism included Percent English Language Learners and Percent in Temporary Housing.
 
@@ -115,11 +115,11 @@ The LASSO regression gave the features most important to our target, chronic abs
 
 Based on the recall score, the gradient boosting model successfully identified high-risk dropout schools 91% of the time. These results suggest that the model can accurately predict schools at high risk of dropout, enabling targeted interventions to address key factors contributing to dropout risk.
 
-![Figure 9: Gradient boosting classification feature importancegb](../images/graphs/gb_binary.png){width=100% height=auto}
+![Figure 12: Gradient boosting classification feature importancegb](../images/graphs/gb_binary.png){width=100% height=auto}
 
 The top 15 important features highlight several key factors, with college persistence ranking the highest. This suggests that schools struggling with dropout risk may also have issues with retaining students after their first year of college. Other significant features include the percentage of students in temporary housing and the percentage of overage/undercredited students (students with very few credits), which indicates a strong relationship between socioeconomic challenges and dropout rates.
 
-#### Multiclass Classification
+### Multiclass Classification
 **Target:** Classifying Schools with High vs. Medium vs. Low College Persistence
 
 | Metric          | High   | Low    | Medium | Accuracy | 
@@ -130,7 +130,7 @@ The top 15 important features highlight several key factors, with college persis
 
 Examining the recall scores, this gradient boosting multiclass classification model successfully predicts 86% of schools with high college persistence, 72% of schools with medium college persistence, and 91% of schools with low college persistence. While there is room for improvement in predicting the medium category, the model's ability to accurately identify schools with low college persistence is particularly significant, as this is where intervention is most needed. 
 
-![Figure 9: Gradient boosting classification feature importancegb](../images/graphs/gb_multi.png){width=100% height=auto}
+![Figure 13: Gradient boosting classification feature importancegb](../images/graphs/gb_multi.png){width=100% height=auto}
 
 Looking at the feature importance, similar to what we saw in the regression model for chronic absenteeism, Average Grade 8 Proficiency is the most important driver of college persistence. It is interesting that this metric continues to have predictive power at the college level. Additionally, both dropout rate and the percentage of chronically absent students are significant features in this model, highlighting the interconnectedness of these metrics within schools that must be addressed.
 

@@ -178,7 +178,9 @@ div.csl-indent {
   <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data">Exploring the Data</a></li>
   <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a></li>
   <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
   <li><a href="#binary-classification" id="toc-binary-classification" class="nav-link" data-scroll-target="#binary-classification">Binary Classification</a></li>
+  <li><a href="#multiclass-classification" id="toc-multiclass-classification" class="nav-link" data-scroll-target="#multiclass-classification">Multiclass Classification</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
   </ul></li>
   </ul>
@@ -321,14 +323,14 @@ div.csl-indent {
 </p><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/graphs/agglom.png" style="width:70.0%" class="figure-img"></p>
-<figcaption>Figure 8: Agglomerative clustering results</figcaption>
+<figcaption>Figure 9: Agglomerative clustering results</figcaption>
 </figure>
 </div>
 <p></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/graphs/cluster_box.png" style="width:100.0%" class="figure-img"></p>
-<figcaption>Figure 9: Boxplot of agglomerative clusters vs targets</figcaption>
+<figcaption>Figure 10: Boxplot of agglomerative clusters vs targets</figcaption>
 </figure>
 </div>
 <p>Agglomerative Clustering worked best for this data, and was able to find patterns in the data. Looking at the boxplot in Figure 9, it is clear that Cluster 1 contains schools with the best student outcomes: low chronic absenteeism, low dropout rates, and high college persistence. This indicates that the algorithm successfully identified meaningful patterns in the data, emphasizing the role these features play in evaluating high school outcomes.</p>
@@ -336,17 +338,17 @@ div.csl-indent {
 </section>
 <section id="supervised-learning" class="level3">
 <h3 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h3>
-<section id="regression" class="level4">
-<h4 class="anchored" data-anchor-id="regression">Regression</h4>
+</section>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
 <p><strong>Target:</strong> Chronic Absenteeism</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/graphs/lasso.png" style="width:100.0%" class="figure-img"></p>
-<figcaption>Figure 9: LASSO regression feature importance</figcaption>
+<figcaption>Figure 11: LASSO regression feature importance</figcaption>
 </figure>
 </div>
 <p>The LASSO regression gave the features most important to our target, chronic absenteeism. Supportive Environment score emerging as the most important variable in our model. This score reflects how well a school fosters a supportive, challenging environment for students<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. The next key feature was Average Grade 8 Proficiency. This metric emphasizes how important it is for children to be on the right track from a young age. The third important factor was Rigorous Instruction score, which measures how engaging and effective the curriculum is in promoting critial-thinking skills<span class="citation" data-cites="NYCPublicSchoolsInfoHub_2024"><sup><a href="#ref-NYCPublicSchoolsInfoHub_2024" role="doc-biblioref">1</a></sup></span>. Additionally, significant socioeconomic factors contributing to chronic absenteeism included Percent English Language Learners and Percent in Temporary Housing.</p>
-</section>
 </section>
 <section id="binary-classification" class="level3">
 <h3 class="anchored" data-anchor-id="binary-classification">Binary Classification</h3>
@@ -385,12 +387,13 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/graphs/gb_binary.png" style="width:100.0%" class="figure-img"></p>
-<figcaption>Figure 9: Gradient boosting classification feature importancegb</figcaption>
+<figcaption>Figure 12: Gradient boosting classification feature importancegb</figcaption>
 </figure>
 </div>
 <p>The top 15 important features highlight several key factors, with college persistence ranking the highest. This suggests that schools struggling with dropout risk may also have issues with retaining students after their first year of college. Other significant features include the percentage of students in temporary housing and the percentage of overage/undercredited students (students with very few credits), which indicates a strong relationship between socioeconomic challenges and dropout rates.</p>
-<section id="multiclass-classification" class="level4">
-<h4 class="anchored" data-anchor-id="multiclass-classification">Multiclass Classification</h4>
+</section>
+<section id="multiclass-classification" class="level3">
+<h3 class="anchored" data-anchor-id="multiclass-classification">Multiclass Classification</h3>
 <p><strong>Target:</strong> Classifying Schools with High vs.&nbsp;Medium vs.&nbsp;Low College Persistence</p>
 <table class="caption-top table">
 <thead>
@@ -430,11 +433,10 @@ div.csl-indent {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/graphs/gb_multi.png" style="width:100.0%" class="figure-img"></p>
-<figcaption>Figure 9: Gradient boosting classification feature importancegb</figcaption>
+<figcaption>Figure 13: Gradient boosting classification feature importancegb</figcaption>
 </figure>
 </div>
 <p>Looking at the feature importance, similar to what we saw in the regression model for chronic absenteeism, Average Grade 8 Proficiency is the most important driver of college persistence. It is interesting that this metric continues to have predictive power at the college level. Additionally, both dropout rate and the percentage of chronically absent students are significant features in this model, highlighting the interconnectedness of these metrics within schools that must be addressed.</p>
-</section>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h3>
