@@ -1,15 +1,6 @@
 ---
 title: "Progress log"
 ---
-
-## Jessica Joy:
-
-link to "About Me" page
-
-
-**Project contribution log:**
-
-
 **M: 11-04-2024** 
 
 * [x] brainstorming topics with GPT 
@@ -33,7 +24,7 @@ link to "About Me" page
 * [x] add random forest and boosting algorithms to regression
 * [x] work on binary classification: random forest and gradient boosting
 
-**F: 12-12-2024** 
+**T: 12-12-2024** 
 
 * [x] add Lasso regression to regression algorithms
 * [x] write up supervised learning methods and conclusions

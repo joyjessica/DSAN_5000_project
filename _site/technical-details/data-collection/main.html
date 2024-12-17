@@ -275,7 +275,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="american-community-survey-api" class="level3">
 <h3 class="anchored" data-anchor-id="american-community-survey-api">American Community Survey API</h3>
-<p>In the following code, I first used the requests library to retrieve the Census data from the American Community Survey. The params include get and for, which specify the columns we want and to pull data at the zip code level, respectively. Chat GPT was used to brainstorm potentional relevant columns to pull from the 10,000+ columns that would satisfy the project objectives<span class="citation" data-cites="gpt4o_code_gen"><sup><a href="#ref-gpt4o_code_gen" role="doc-biblioref">1</a></sup></span>. I stored this in a pandas dataframe and renamed the columns to ensure readability. Finally, I exported this dataframe to a csv file to prepare for data cleaning.</p>
+<p>In the following code, I first used the requests library to retrieve the Census data from the American Community Survey. The params include get and for, which specify the columns of interest and to pull data at the zip code level, respectively. Chat GPT was used to brainstorm potentional relevant columns to pull from the 10,000+ columns that would satisfy the project objectives<span class="citation" data-cites="gpt4o_code_gen"><sup><a href="#ref-gpt4o_code_gen" role="doc-biblioref">1</a></sup></span>. I stored this in a pandas dataframe and renamed the columns to ensure readability. Finally, I exported this dataframe to a csv file to prepare for data cleaning.</p>
 <div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -386,7 +386,7 @@ div.csl-indent {
 </section>
 <section id="nyc-open-data-api" class="level3">
 <h3 class="anchored" data-anchor-id="nyc-open-data-api">NYC Open Data API</h3>
-<p>This data on graduation rate outcomes is taken from NYC Open Data. This file contains the dropout rates that we are interested in. This code is adapted from the API documentation<span class="citation" data-cites="noauthor_2005-2019_nodate"><sup><a href="#ref-noauthor_2005-2019_nodate" role="doc-biblioref">2</a></sup></span>. We use the library Socrata from sodapy to retrieve the data. The package returns the JSON data to a Python list of dictionaries so we can easily convert to a pandas dataframe.</p>
+<p>This data on graduation rate outcomes is taken from NYC Open Data. This file contains the dropout rates of interest. This code is adapted from the API documentation<span class="citation" data-cites="noauthor_2005-2019_nodate"><sup><a href="#ref-noauthor_2005-2019_nodate" role="doc-biblioref">2</a></sup></span>. The library Socrata from sodapy is used to retrieve the data. The package returns the JSON data to a Python list of dictionaries for easy conversion to a pandas dataframe.</p>
 <div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sodapy <span class="im">import</span> Socrata</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -427,7 +427,7 @@ div.csl-indent {
 </section>
 <section id="conclusion-and-future-steps" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h3>
-<p>By aggregating data from three different datasets, we were able to create a comprehensive dataset to evaluate various features that may impact our target variables. This analysis helps us better understand how high school quality and socioeconomic factors influence high school outcomes in New York City. Next steps involve cleaning and exploring this data in order to prepare it for the modeling phase.</p>
+<p>By aggregating data from three different datasets, a comprehensive dataset is created to evaluate various features that may impact our target variables. This analysis helps us better understand how high school quality and socioeconomic factors influence high school outcomes in New York City. Next steps involve cleaning and exploring this data in order to prepare it for the modeling phase.</p>
 
 
 

@@ -261,7 +261,7 @@ require(['plotly'], function(Plotly) {
 </header>
 
 
-<p>Exploratory Data Analysis (EDA) is a crucial beginning step in any data science project. On this page, we will examine distributions, analyze correlations, and uncover relationships between variables, ensuring the data is ready for the modeling phase. These insights will guide and shape our modeling approach. It is important to avoid modeling blindly and instead base our decisions on a thorough understanding of the data.</p>
+<p>Exploratory Data Analysis (EDA) is a crucial beginning step in any data science project. On this page, I will examine distributions, analyze correlations, and uncover relationships between variables, ensuring the data is ready for the modeling phase. These insights will guide and shape our modeling approach. It is important to avoid modeling blindly and instead base our decisions on a thorough understanding of the data.</p>
 <div id="cell-2" class="cell" data-execution_count="96">
 <details class="code-fold">
 <summary>Code</summary>
@@ -917,7 +917,7 @@ require(['plotly'], function(Plotly) {
 </div>
 </div>
 </div>
-<p>Based on these distributions, we may want to transform some variables before modeling. Lets check the actual skews:</p>
+<p>Based on these distributions, it may be necessary to transform some variables before modeling. Lets check the actual skews:</p>
 <div id="cell-11" class="cell" data-execution_count="39">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1091,7 +1091,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<p>It appears that lower supportive environment scores is associated with high rates of chronic absenteeism. We can do a t-test to validate the assumption that there is a difference in supportive score for schools with high and low chronic absenteeism</p>
+<p>It appears that lower supportive environment scores is associated with high rates of chronic absenteeism. A t-test can be done to validate the assumption that there is a difference in supportive score for schools with high and low chronic absenteeism</p>
 <div id="cell-30" class="cell" data-execution_count="75">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1271,11 +1271,11 @@ if (outputEl) {{
                         })                };                });            </script>        </div>
 </div>
 </div>
-<p>It looks like high rates of college persistence are associated with low dropout rates and low percentages of student chronically absent - a motivating example of why we need to intervene to reduce these two metrics in order to maximize college persistence!</p>
+<p>It looks like high rates of college persistence are associated with low dropout rates and low percentages of student chronically absent - a motivating example of why intervention is needed to reduce these two metrics in order to maximize college persistence!</p>
 </section>
 <section id="feature-selection" class="level2">
 <h2 class="anchored" data-anchor-id="feature-selection">Feature Selection</h2>
-<p>For further analysis, we will do some feature selection to help us prepare for modeling</p>
+<p>For further analysis, feature selection will done to help us prepare for modeling</p>
 <p>Lets check what columns are most correlated with our regression target, from our transformed data</p>
 <div id="cell-49" class="cell" data-execution_count="89">
 <details class="code-fold">
@@ -1344,8 +1344,8 @@ Name: Percent of Students Chronically Absent, dtype: float64</code></pre>
 <span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Took_ACT"</span>, <span class="st">'Rigorous Instruction - Element Score'</span>,<span class="st">'Percentage of Students Enrolled in Any Advanced Course'</span>,<span class="st">'log_enrollment'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Now we have a dataset of 20 features.</p>
-<p>We can visualize these correlations using pairplot, we want to make sure there are no zero looking correlations, or something that looks like a big blob of dots with no apparent relationship</p>
+<p>Now I have a dataset of 20 features.</p>
+<p>One can visualize these correlations using pairplot, making sure there are no zero looking correlations, or something that looks like a big blob of dots with no apparent relationship</p>
 <div id="cell-52" class="cell" data-execution_count="91">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1359,7 +1359,7 @@ Name: Percent of Students Chronically Absent, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<p>Now we should check the pairwise correlations to ensure that we dont have variables that are too correlated to each other</p>
+<p>Now I will check the pairwise correlations to ensure that there are no variables that are too correlated to each other</p>
 <div id="cell-54" class="cell" data-execution_count="92">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1386,7 +1386,7 @@ Name: Percent of Students Chronically Absent, dtype: float64</code></pre>
 </div>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The EDA process has provided us with valuable insights into the data, which will guide and shape the modeling process. By examining distributions, correlations, and relationships between variables, we have identified potential issues such as skewness and multicollinearity, which help identify transformations and feature engineering necessary. For example, I applied log transformations to variables exhibiting power law distributions, resulted in more normally distributed data, a key assumption for regression analysis.</p>
+<p>The EDA process has provided us with valuable insights into the data, which will guide and shape the modeling process. By examining distributions, correlations, and relationships between variables, potential issues have been identified such as skewness and multicollinearity, which help identify transformations and feature engineering necessary. For example, I applied log transformations to variables exhibiting power law distributions, resulted in more normally distributed data, a key assumption for regression analysis.</p>
 <p>I also identified significant relationships between several variables and our target metrics. T-tests showed significant differences in median household income between schools with high and low dropout rates, as well as significant differences in supportive school environment scores between schools with high and low chronic absenteeism. Similarly, the ANOVA test revealed that the there is a significant difference in Economic Need Index for schools with different levels of college persistence. These findings all highlighting the importance of addressing socioeconomic and school quality factors to improve student outcomes.</p>
 <p>Geographic analysis further identified areas where intervention may be necessary, such as high dropout rates in the Bronx and high chronic absenteeism in district 84.</p>
 </section>

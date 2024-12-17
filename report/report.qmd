@@ -6,7 +6,7 @@ bibliography: ../assets/references.bib
 
 ## Breaking the Cycle: Key Findings and Takeaways
 
-High school dropout rates have a profound impact on students, families, and communities. To bring these numbers down, we first need to understand what’s driving them. This study takes a closer look at how the quality of schools and the socioeconomic challenges students face influence high school outcomes in New York City. By diving into these factors, we aim to uncover ways to help students succeed.
+High school dropout rates have a profound impact on students, families, and communities. To bring these numbers down, it’s essential to first understand what’s driving them. This study takes a closer look at how the quality of schools and the socioeconomic challenges students face influence high school outcomes in New York City. By diving into these factors, the goal is to uncover ways to help students succeed.
 
 ### Data Science Questions:
 1. How does a school’s environment contribute to better student outcomes?
@@ -18,7 +18,7 @@ High school dropout rates have a profound impact on students, families, and comm
 ### Scope
 1. Collect and clean data, creating a comprehensive dataset of NYC high schools
 2. Perform exploratory data analysis to uncover trends in the data
-3. Perform unsupervised learning and supervised learning to find real relationships between our features and targets: chronic absenteeism, dropout rates, and college persistence
+3. Perform unsupervised learning and supervised learning to find real relationships between the features and targets: chronic absenteeism, dropout rates, and college persistence
 4. Summarize findings into actionable insights
 
 ### Exploring the Data
@@ -43,7 +43,7 @@ It is evident that the highest median drop out rate is in the Bronx, followed by
 
 This plot clearly shows the highest drop out rate to be in district 12, which is located in the Bronx. Next is district 8 which is also located in the Bronx. This plot makes it easier to pinpoint school districts that need to be targeted.
 
-Next, we can take a look at specific socioeconomic and school features that we hypothesize will have an impact on our targets.
+Next, we will examine specific socioeconomic and school features that are hypothesized to impact our target outcomes.
 
 :::{.grid}
 ::: {.g-col-6}
@@ -56,9 +56,9 @@ Next, we can take a look at specific socioeconomic and school features that we h
 :::
 :::
 
-Using statistical testing, we were able to conclude that there is a statistically significant difference in mean median household income for high schools with high rates of drop out and high schools with low rates of dropout. This suggests that students from higher-income households, likely with parents with degrees and employment, and are less likely to drop out themselves. This emphasizes the importance of addressing economic disparities to improve these rates.
+Using statistical testing, it was concluded that there is a statistically significant difference in mean median household income between high schools with high dropout rates and those with low dropout rates. This suggests that students from higher income households, likely with parents who have degrees and employment, are less likely to drop out themselves. This emphasizes the importance of addressing economic disparities to improve these rates.
 
-Supportive Environment score comes from the NYC Quality report and is defined as, "reflects how well the school establishes a culture where students feel safe, challenged to grow, and supported to meet high expectations." There is a statistically significant difference in the mean supportive environment score for a school with high and low rates of chronic absenteeism. This is important because it shows that when students feel good about the school environment, and feel a sense of value and community, theyre less likely to skip class or be absent.
+Supportive Environment score comes from the NYC Quality report and is defined as, "how well the school establishes a culture where students feel safe, challenged to grow, and supported to meet high expectations"[@NYCPublicSchoolsInfoHub_2024]. There is a statistically significant difference in the mean supportive environment score for a school with high and low rates of chronic absenteeism. This is important because it shows that when students feel good about the school environment, and feel a sense of value and community, they are less likely to skip class or be absent.
 
 <p align="center">
 ![Figure 6: Scatter plot of college persistence vs average grade 8 proficiency](../images/graphs/graph3.png){width=50% height=auto}
@@ -67,7 +67,7 @@ Figure 6 highlights a strong relationship between college persistence and averag
 
 ### Unsupervised Learning
 
-#### Dimensionality Reduction
+### Dimensionality Reduction
 
 :::{.grid}
 ::: {.g-col-6}
@@ -82,10 +82,10 @@ Figure 6 highlights a strong relationship between college persistence and averag
 
 **PCA** was applied to the socioeconomic factors, revealing a pattern in Figure 7 where schools with higher dropout rates are positioned towards the top of the plot, while those with lower dropout rates are found towards the bottom. This illustrates the significant impact of socioeconomic factors on dropout rates.
 
-**T-SNE** was able to uncover certain patterns in the data and differentiate schools with varying levels of college persistence in Figure 8. While there is some overlap, we see the gradient become lighter as we move to the right. This emphasizes the model's ability to distinguish schools based on their college persistence levels
+**T-SNE** was able to uncover certain patterns in the data and differentiate schools with varying levels of college persistence in Figure 8. While there is some overlap, the gradient becomes lighter as it moves to the right. This emphasizes the model's ability to distinguish schools based on their college persistence levels
 
 
-#### Clustering
+### Clustering
 
 <p align="center">
 ![Figure 9: Agglomerative clustering results](../images/graphs/agglom.png){width=70% height=auto}
@@ -102,7 +102,7 @@ Agglomerative Clustering worked best for this data, and was able to find pattern
 
 ![Figure 11: LASSO regression feature importance](../images/graphs/lasso.png){width=100% height=auto}
 
-The LASSO regression gave the features most important to our target, chronic absenteeism. Supportive Environment score emerging as the most important variable in our model. This score reflects how well a school fosters a supportive, challenging environment for students [@NYCPublicSchoolsInfoHub_2024]. The next key feature was Average Grade 8 Proficiency. This metric emphasizes how important it is for children to be on the right track from a young age. The third important factor was Rigorous Instruction score, which measures how engaging and effective the curriculum is in promoting critial-thinking skills [@NYCPublicSchoolsInfoHub_2024]. Additionally, significant socioeconomic factors contributing to chronic absenteeism included Percent English Language Learners and Percent in Temporary Housing.
+The LASSO regression gave the features most important to our target, chronic absenteeism. Supportive Environment score emerging as the most important variable in our model. This score reflects how well a school fosters a supportive, challenging environment for students [@NYCPublicSchoolsInfoHub_2024]. The next key feature was Average Grade 8 Proficiency. This metric emphasizes how important it is for children to be on the right track from a young age. The third important factor was Rigorous Instruction score, which measures how engaging and effective the curriculum is in promoting critical-thinking skills [@NYCPublicSchoolsInfoHub_2024]. Additionally, significant socioeconomic factors contributing to chronic absenteeism included Percent English Language Learners and Percent in Temporary Housing.
 
 ### Binary Classification
 **Target:** Classifying Schools with High vs. Low Dropout Risk
@@ -132,7 +132,7 @@ Examining the recall scores, this gradient boosting multiclass classification mo
 
 ![Figure 13: Gradient boosting classification feature importancegb](../images/graphs/gb_multi.png){width=100% height=auto}
 
-Looking at the feature importance, similar to what we saw in the regression model for chronic absenteeism, Average Grade 8 Proficiency is the most important driver of college persistence. It is interesting that this metric continues to have predictive power at the college level. Additionally, both dropout rate and the percentage of chronically absent students are significant features in this model, highlighting the interconnectedness of these metrics within schools that must be addressed.
+Looking at the feature importance, similar to what was seen in the regression model for chronic absenteeism, Average Grade 8 Proficiency is the most important driver of college persistence. It is interesting that this metric continues to have predictive power at the college level. Additionally, both dropout rate and the percentage of chronically absent students are significant features in this model, highlighting the interconnectedness of these metrics within schools that must be addressed.
 
 ### Key Takeaways
 * **Grade 8 Proficiency** is a crucial indicator of future success, highlighting the importance of early intervention to address academic challenges before they escalate
@@ -140,4 +140,4 @@ Looking at the feature importance, similar to what we saw in the regression mode
 * **Economic Disadvantage** plays a significant role in long-term outcomes such as college persistence, with students from lower-income backgrounds facing more barriers to succes
 * **The Connection:** Chronic absenteeism, dropout rates, and college persistence are closely linked. Addressing absenteeism early is key to preventing dropout and ensuring students stay on track for college success.
 
-By identifying and understanding the key drivers, such as school environment and socioeconomic factors, we can develop targeted strategies to support students more effectively. Empowering schools to create safe, supportive, and inclusive environments, while addressing broader economic challenges, is essential to ensure that every student has the opportunity to succeed academically and beyond.
+By identifying and understanding the key drivers, such as school environment and socioeconomic factors, targeted strategies can be developed to support students more effectively. Empowering schools to create safe, supportive, and inclusive environments, while addressing broader economic challenges, is essential to ensure that every student has the opportunity to succeed academically and beyond.
